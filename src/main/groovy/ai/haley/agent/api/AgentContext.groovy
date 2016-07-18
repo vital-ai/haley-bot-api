@@ -1,0 +1,146 @@
+package ai.haley.agent.api
+
+import java.util.List;
+
+import com.vitalai.aimp.domain.AIMPMessage
+import com.vitalai.aimp.domain.BaseProfile;
+import com.vitalai.aimp.domain.BooleanPropertyFact
+import com.vitalai.aimp.domain.Choice
+import com.vitalai.aimp.domain.CurrentBotMessage
+import com.vitalai.aimp.domain.DialogStatusMessage;
+import com.vitalai.aimp.domain.DoublePropertyFact
+import com.vitalai.aimp.domain.HaleyTextMessage;
+import com.vitalai.aimp.domain.IntegerPropertyFact
+import com.vitalai.aimp.domain.PropertyFact
+import com.vitalai.aimp.domain.Question
+import com.vitalai.aimp.domain.QuestionMessage
+import com.vitalai.aimp.domain.Session;
+import com.vitalai.aimp.domain.StringPropertyFact
+import com.vitalai.aimp.domain.UnsetFactMessage
+
+import ai.haley.agent.domain.DialogQuestion
+import ai.vital.domain.HyperEdge_hasFact
+import ai.vital.domain.VITAL_Fact
+import ai.vital.vitalservice.VitalStatus
+import ai.vital.vitalservice.query.ResultList;
+import ai.vital.vitalsigns.VitalSigns;
+import ai.vital.vitalsigns.model.GraphObject
+import ai.vital.vitalsigns.model.VITAL_Container;
+import ai.vital.vitalsigns.model.VitalApp
+import ai.vital.vitalsigns.model.property.URIProperty
+
+interface AgentContext {
+
+	BaseProfile getProfile()
+
+	Session getSession()
+	
+	BotSessionState getDialogState()	
+	
+	//objects to be saved/deleted at the end of request
+	
+	//do not expose this
+//	AgentResponse agentResponse
+	
+	IHaleyAgent getAgentInstance()
+	
+	//sends output message as it is
+	public VitalStatus sendOutputMessage(List<GraphObject> gs)
+
+	
+	public HaleyTextMessage replyWithText(AIMPMessage input, String text)
+	
+	public HaleyTextMessage sendTextMessage(AIMPMessage input, String text)
+	
+	public AIMPMessage sendGenericMessage(AIMPMessage input, AIMPMessage output, GraphObject... payload)	
+	
+	
+//	public List<GraphObject> getFactsGraph(FactScope scope) {
+//		return new ArrayList<GraphObject>( _getContainer(scope).factsGraph.getAllObjects() )	
+//	}
+	
+	public void sendQuestion(DialogQuestion nextQuestion, AIMPMessage msg, String questionTextPrefix)
+	
+	
+	public int removeFacts(FactScope scope, String factName)
+	
+//	public FactsContainer getFactsContainer(FactScope scope)
+	
+	public VITAL_Container getFactsContainerView(FactScope scope)	
+	
+	public Set<String> setFact(FactScope scope, DialogQuestion sourceQuestion, String answer)
+
+	//utility method
+	//TODO
+//	public Set<String> setFact(FactScope scope, GraphObject parentObject, PropertyFactInfo factInfo, Object value)	
+	
+	boolean hasFactForQuestion(DialogQuestion question)
+	
+	//has fact with given name and scope
+	boolean hasFact(FactScope scope, String factName)
+	
+	//has fact with given name, any scope
+	boolean hasFact(String factName)
+	
+	/**
+	 * check if a profile fact for given session is already set
+	 * @param question
+	 * @param overridden scope
+	 * @return
+	 */
+	boolean hasFactForQuestion(DialogQuestion question, FactScope scope)
+	
+	public StringPropertyFact getStringFact(FactScope scope, String factName)
+	
+	public StringPropertyFact getStringFactForFact(FactScope scope, String parentURI, String factName)
+	
+	public BooleanPropertyFact getBooleanFact(FactScope scope, String factName)
+	
+	public BooleanPropertyFact getBooleanFactForFact(FactScope scope, String parentURI, String factName) 
+	
+	public IntegerPropertyFact getIntegerFact(FactScope scope, String factName)
+	
+	public IntegerPropertyFact getIntegerFactForFact(FactScope scope, String parentURI, String factName)
+	
+	public List<IntegerPropertyFact> getIntegerFactsList(FactScope scope, String factName)
+	
+	
+	public DoublePropertyFact getDoubleFact(FactScope scope, String factName)
+	
+	public DoublePropertyFact getDoubleFactForFact(FactScope scope, String parentURI, String factName)
+
+	
+	
+	
+	
+	
+	//purges profile and session facts
+	public void resetProfile(boolean keepbotFact)
+	
+	public int removeFactByURI(String factURI)
+	
+	public int removeFactsByMessageConstraints(AgentContext context, UnsetFactMessage msg)
+		
+	CurrentBotMessage sendCurrentBotMessage(AIMPMessage msg)
+		
+	DialogStatusMessage sendDialogStatusMessage(AIMPMessage msg, String status)
+		
+	int removeFactsByQuestion(DialogQuestion question)
+
+	GraphObject getFactsGraphObject(FactScope scope, String objectURI)
+
+	GraphObject getFactGraphRoot(FactScope scope)
+
+	VITAL_Fact addGenericFactObject(FactScope scope, GraphObject factParent, VITAL_Fact childFact)
+
+	
+	/**
+	 * Resolves a resultlist that's stored in a fact
+	 * @param scope
+	 * @param resultListFactURI
+	 * @return ResultList or null if not found
+	 */
+	ResultList getResultList(FactScope scope, String resultListFactURI)
+	
+		
+}
