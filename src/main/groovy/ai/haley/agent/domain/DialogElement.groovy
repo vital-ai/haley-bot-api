@@ -40,6 +40,12 @@ abstract class DialogElement {
 	//{ DialogQuestion thisQuestion, AgentContext context ->
 	Closure revert = null
 
+	
+	/**
+	 * Stores arbitrary dialog element state. Useful when an element is to be reprocessed. 
+	 */
+	Map<String, Object> state = [:]
+	
 	abstract Object copy()
 
 	//by default it would generate URI in form urn:classname-random

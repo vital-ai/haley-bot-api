@@ -10,6 +10,7 @@ class DialogQuestionStart extends DialogElement {
 		DialogQuestionStart dqs = new DialogQuestionStart()
 		dqs.id = id
 		dqs.revert = revert
+		dqs.state = new HashMap<String, Object>(state)
 		return dqs;
 	}
 

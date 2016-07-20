@@ -48,6 +48,7 @@ class DialogDatascript extends DialogElement {
 		d.processResults = processResults
 		d.revert = revert
 		d.serviceName = serviceName
+		d.state = new HashMap<String, Object>(state)
 		d.validate = validate
 		return d
 	}

@@ -6,6 +6,13 @@ import groovy.lang.Closure;;
 
 class DialogRecommendations extends DialogElement {
 
+	//if set a facts graph root -> solution fact is created, all results are linked to this HyperEdge_hasRecommendationElement
+	boolean createSolutionFact = false
+	
+	//set when fact is created
+	String solutionFactURI = null
+	
+	
 	//a closure that returns function params, returns Map<String, Object>
 	Closure params = { DialogRecommendations thisElement, AgentContext context -> [:] }	
 	
@@ -34,6 +41,7 @@ class DialogRecommendations extends DialogElement {
 		d.params = params
 		d.processResults = processResults
 		d.revert = revert
+		d.state = new HashMap<String, Object>(state)
 		return d
 	}
 	

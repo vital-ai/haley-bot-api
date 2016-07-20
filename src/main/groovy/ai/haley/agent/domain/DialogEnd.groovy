@@ -7,6 +7,7 @@ class DialogEnd extends DialogElement {
 		DialogEnd d = new DialogEnd()
 		d.id = id
 		d.revert = revert
+		d.state = new HashMap<String, Object>(state)
 		return d;
 	}
 

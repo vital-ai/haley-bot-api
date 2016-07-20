@@ -19,6 +19,7 @@ class DialogGenerator extends DialogElement {
 		dg.generateDialog = generateDialog
 		dg.id = id
 		dg.revert = revert
+		dg.state = new HashMap<String, Object>(state)
 		return dg;
 	}
 

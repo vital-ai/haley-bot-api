@@ -35,6 +35,7 @@ class DialogPredict extends DialogElement {
 		dp.params = params
 		dp.processResults = processResults
 		dp.revert = revert
+		dp.state = new HashMap<String, Object>(state)
 		return dp;
 	}
 

@@ -129,6 +129,7 @@ class DialogQuestion extends DialogElement {
 		q.revert = revert
 //		q.sent = sent
 //		q.skipped = skipped
+		q.state = new HashMap<String, Object>(state)
 		q.textResponseProcessor = textResponseProcessor
 		q.validationType = validationType
 		return q	

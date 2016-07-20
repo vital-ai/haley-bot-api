@@ -8,6 +8,7 @@ class DialogResume extends DialogElement {
 		DialogResume ds = new DialogResume()
 		ds.id = id
 		ds.revert = revert
+		ds.state = new HashMap<String, Object>(state)
 		return ds;
 	}
 

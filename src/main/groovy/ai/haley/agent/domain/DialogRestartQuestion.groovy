@@ -18,6 +18,7 @@ class DialogRestartQuestion extends DialogElement {
 		drq.applicable = applicable
 		drq.id = id
 		drq.questionID = questionID
+		drq.state = new HashMap<String, Object>(state)
 		return drq;
 	}
 

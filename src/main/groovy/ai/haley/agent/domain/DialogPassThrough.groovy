@@ -7,6 +7,7 @@ class DialogPassThrough extends DialogElement {
 		DialogPassThrough pt = new DialogPassThrough()
 		pt.id = id
 		pt.revert = revert
+		pt.state = new HashMap<String, Object>(state)
 		return pt;
 	}
 

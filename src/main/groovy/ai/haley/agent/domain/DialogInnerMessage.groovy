@@ -21,6 +21,7 @@ class DialogInnerMessage extends DialogElement {
 		im.revert = revert
 		im.message = message
 		im.processed = processed
+		im.state = new HashMap<String, Object>(state)
 		return im;
 	}
 

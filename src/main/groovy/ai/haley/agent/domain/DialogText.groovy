@@ -20,6 +20,7 @@ class DialogText extends DialogElement {
 		d.available = available
 		d.id = id
 		d.revert = revert
+		d.state = new HashMap<String, Object>(state)
 		d.text = text
 		return d
 	}

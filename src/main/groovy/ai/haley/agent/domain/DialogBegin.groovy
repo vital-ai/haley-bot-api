@@ -8,6 +8,7 @@ class DialogBegin extends DialogElement {
 		DialogBegin b = new DialogBegin()
 		b.id = id
 		b.revert = revert
+		b.state = new HashMap<String, Object>(state)
 		return b
 	}
 

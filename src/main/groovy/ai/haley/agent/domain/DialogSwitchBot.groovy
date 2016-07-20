@@ -18,6 +18,7 @@ class DialogSwitchBot extends DialogElement {
 		DialogSwitchBot d = new DialogSwitchBot()
 		d.id = id
 		d.revert = revert
+		d.state = new HashMap<String, Object>(state)
 		d.switchBot = switchBot
 		return d;
 	}

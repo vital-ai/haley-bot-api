@@ -55,6 +55,7 @@ class DialogQuery extends DialogElement {
 		dq.onException = onException
 		dq.revert = revert
 		dq.serviceName = serviceName
+		dq.state = new HashMap<String, Object>(state)
 		return dq;
 	}
 	

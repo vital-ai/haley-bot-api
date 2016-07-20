@@ -1,9 +1,10 @@
 package ai.haley.agent.api
 
-import ai.haley.agent.domain.DialogElement;
+import ai.haley.agent.domain.DialogElement
+import ai.haley.agent.domain.DialogGenerator
 import ai.haley.agent.domain.DialogQuestion
-import ai.haley.agent.domain.DialogQuestionEnd;
-import ai.haley.agent.domain.DialogQuestionStart;;
+import ai.haley.agent.domain.DialogQuestionEnd
+import ai.haley.agent.domain.DialogQuestionStart
 
 class DialogHistory {
 
@@ -104,11 +105,26 @@ class DialogHistory {
 		
 		List<DialogElement> results = []
 		
+		boolean insideQMarkers = false 
+		
 		for(int j = queue.size() - 1 ; j >= 0; j--) {
 			
 			DialogElement el = queue.get(j)
 			
+			//do not replicate dialog generators
+			if(el instanceof DialogGenerator && el.id != null) {
+				if(remainingQuestionIDs.contains(el.id)) {
+					continue
+				}
+			}
+			
 			previousQuestionStack.add(0, el)
+			
+			if(el instanceof DialogQuestionEnd) {
+				insideQMarkers = true
+			}  else if(el instanceof DialogQuestionStart) {
+				insideQMarkers = false
+			}
 			
 			if(el instanceof DialogQuestion) {
 				
@@ -122,6 +138,20 @@ class DialogHistory {
 					
 					if(el.skipped || el.handled) {
 						//valid may return results
+						
+						if(insideQMarkers) {
+							boolean qStartFound = false
+							//also scan to DialogQ
+							while(!qStartFound) {
+								j--
+								if(j < 0) throw new Exception("No DialogQuestionBeginElement found")
+								el = queue.get(j)
+								results.add(0, el)
+								if(el instanceof DialogQuestionStart) {
+									qStartFound = true
+								}
+							}
+						}
 						
 						return results
 						
@@ -166,7 +196,7 @@ class DialogHistory {
 			
 		}
 		
-		return
+		return results
 		
 	}	
 	

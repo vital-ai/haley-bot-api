@@ -10,6 +10,9 @@ import groovy.lang.Closure;
 
 abstract class BotBuilder {
 
+	//runtime bot name
+	String name
+	
 	//set by agent
 	static Closure defaultProcessMessage = null
 	

@@ -1,6 +1,7 @@
 package ai.haley.agent.api
 
-import ai.haley.agent.domain.DialogElement;
+import ai.haley.agent.domain.DialogElement
+import ai.haley.agent.domain.DialogGenerator;
 import ai.haley.agent.domain.DialogQuestion
 import ai.haley.agent.domain.DialogQuestionEnd;;
 
@@ -119,6 +120,28 @@ class DialogQueue {
 		return ids
 	}
 	
+	public List<String> getDialogGeneratorIDs() {
+
+		List<String> ids = []
+		
+		for(DialogElement el : queue) {
+			
+			if(el instanceof DialogGenerator) {
+				
+				String dgid = el.id
+				
+				if(dgid != null) {
+					
+					ids.add(dgid)
+					
+				}
+			}
+		}
+		
+		return ids
+				
+	}
+	
 	public int removeElementsWithIDPrefix(String idPrefix) {
 		
 		int c = 0
@@ -161,7 +184,7 @@ class DialogQueue {
 		
 		List<DialogElement> els = []
 		if(queue.size() == 0) throw new Exception("Queue is empty")
-		if(peekElement() instanceof DialogQuestion) throw new Exception("not a question on top of the queue: ${peekElement().getClass().getSimpleName()}")
+		if(!(peekElement() instanceof DialogQuestion)) throw new Exception("not a question on top of the queue: ${peekElement().getClass().getSimpleName()}")
 
 		els.add(peekElement())
 		
@@ -170,7 +193,7 @@ class DialogQueue {
 			DialogElement el = queue.get(i)
 
 			if(el instanceof DialogQuestionEnd) {
-				els.add(0, el)
+				els.add(el)
 				break
 			}			
 			
@@ -179,7 +202,7 @@ class DialogQueue {
 				break
 			}
 			
-			els.add(0, el)
+			els.add(el)
 			
 		}	
 		
