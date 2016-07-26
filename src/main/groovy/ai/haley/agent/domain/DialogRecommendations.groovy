@@ -36,6 +36,7 @@ class DialogRecommendations extends DialogElement {
 	Object copy() {
 		DialogRecommendations d = new DialogRecommendations()
 		d.available = available
+		d.createSolutionFact = createSolutionFact
 		d.id = id
 		d.onException = onException
 		d.params = params

@@ -141,6 +141,14 @@ interface AgentContext {
 	 * @return ResultList or null if not found
 	 */
 	ResultList getResultList(FactScope scope, String resultListFactURI)
+
 	
+	/**
+	 * Resolves solution objects
+	 * @param scope
+	 * @param solutionFactURI
+	 * @return List<GraphObject> of this solution of null if not found
+	 */
+	List<GraphObject> getSolutionObjects(FactScope scope, String solutionFactURI)
 		
 }

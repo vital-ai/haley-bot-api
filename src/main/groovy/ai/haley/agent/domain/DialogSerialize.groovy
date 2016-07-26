@@ -45,7 +45,7 @@ class DialogSerialize extends DialogElement {
 	
 	/**
 	 * null filter means all predictions are skipped
-	 * Used when persistPredictions is true, input: AgentContext ctx, PedictionFact predictionFact, List<GraphObject> resultListObjectsWithHyperEdges
+	 * input: AgentContext ctx, PedictionFact predictionFact, List<GraphObject> resultListObjectsWithHyperEdges
 	 * Returns filtered graph objects list, null list means the prediction fact should be skipped
 	 */
 	Closure predictionObjectsFilter = null
