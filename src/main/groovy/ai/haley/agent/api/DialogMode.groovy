@@ -8,6 +8,6 @@ enum DialogMode {
 	
 	guided,
 	
-	searchmode
+	search
 	
 }

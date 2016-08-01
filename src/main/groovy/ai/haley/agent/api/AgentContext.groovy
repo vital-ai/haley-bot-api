@@ -1,33 +1,23 @@
 package ai.haley.agent.api
 
-import java.util.List;
-
-import com.vitalai.aimp.domain.AIMPMessage
-import com.vitalai.aimp.domain.BaseProfile;
-import com.vitalai.aimp.domain.BooleanPropertyFact
-import com.vitalai.aimp.domain.Choice
-import com.vitalai.aimp.domain.CurrentBotMessage
-import com.vitalai.aimp.domain.DialogStatusMessage;
-import com.vitalai.aimp.domain.DoublePropertyFact
-import com.vitalai.aimp.domain.HaleyTextMessage;
-import com.vitalai.aimp.domain.IntegerPropertyFact
-import com.vitalai.aimp.domain.PropertyFact
-import com.vitalai.aimp.domain.Question
-import com.vitalai.aimp.domain.QuestionMessage
-import com.vitalai.aimp.domain.Session;
-import com.vitalai.aimp.domain.StringPropertyFact
-import com.vitalai.aimp.domain.UnsetFactMessage
-
 import ai.haley.agent.domain.DialogQuestion
-import ai.vital.domain.HyperEdge_hasFact
 import ai.vital.domain.VITAL_Fact
 import ai.vital.vitalservice.VitalStatus
-import ai.vital.vitalservice.query.ResultList;
-import ai.vital.vitalsigns.VitalSigns;
+import ai.vital.vitalservice.query.ResultList
 import ai.vital.vitalsigns.model.GraphObject
-import ai.vital.vitalsigns.model.VITAL_Container;
-import ai.vital.vitalsigns.model.VitalApp
-import ai.vital.vitalsigns.model.property.URIProperty
+import ai.vital.vitalsigns.model.VITAL_Container
+
+import com.vitalai.aimp.domain.AIMPMessage
+import com.vitalai.aimp.domain.BaseProfile
+import com.vitalai.aimp.domain.BooleanPropertyFact
+import com.vitalai.aimp.domain.CurrentBotMessage
+import com.vitalai.aimp.domain.DialogStatusMessage
+import com.vitalai.aimp.domain.DoublePropertyFact
+import com.vitalai.aimp.domain.HaleyTextMessage
+import com.vitalai.aimp.domain.IntegerPropertyFact
+import com.vitalai.aimp.domain.Session
+import com.vitalai.aimp.domain.StringPropertyFact
+import com.vitalai.aimp.domain.UnsetFactMessage
 
 interface AgentContext {
 
@@ -150,5 +140,15 @@ interface AgentContext {
 	 * @return List<GraphObject> of this solution of null if not found
 	 */
 	List<GraphObject> getSolutionObjects(FactScope scope, String solutionFactURI)
+	
+	
+	/**
+	 * Switches current context to a different bot and sends given messages immediately
+	 * Current bot should finish processing current message immediately
+	 * @param inputMessage  
+	 * @param botName
+	 * @param message(s)
+	 */
+	void switchToBot(AIMPMessage inputMessage, String botName, List<GraphObject>... messages)
 		
 }
