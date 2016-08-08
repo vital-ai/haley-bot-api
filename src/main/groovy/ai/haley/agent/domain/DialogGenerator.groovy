@@ -24,6 +24,7 @@ class DialogGenerator extends DialogElement {
 	@Override
 	public Object copy() {
 		DialogGenerator dg = new DialogGenerator()
+		dg.available = available
 		dg.generateDialog = generateDialog
 		dg.id = id
 		dg.revert = revert

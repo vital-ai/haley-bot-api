@@ -1,11 +1,20 @@
 package ai.haley.agent.builder
 
+import com.vitalai.aimp.domain.AnswerMessage;
+
 import ai.haley.agent.api.DialogMode;
 import ai.haley.agent.domain.DialogElement;;
 
 class Dialog {
 
 	DialogMode mode
+	
+	
+	/**
+	 * The default implementation switches to {@link ai.haley.agent.api.DialogMode.search} search mode.
+	 * Params: AgentContext context, AnswerMessage msg 
+	 */
+	Closure onClose = null
 	
 	List<DialogElement> dialogElements = []
 	

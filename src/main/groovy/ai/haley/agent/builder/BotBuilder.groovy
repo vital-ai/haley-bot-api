@@ -13,13 +13,6 @@ abstract class BotBuilder {
 	//runtime bot name
 	String name
 	
-	/**
-	 * By default when a dialog is closed current bot state is switched to DialogMode.search
-	 * when this option is enabled on dialog close event the context will return to default bot, keeping
-	 * this bot dialog session alive
-	 */
-	boolean switchToDefaultBotOnClose = false
-	
 	//set by agent
 	static Closure defaultProcessMessage = null
 	
@@ -129,6 +122,7 @@ abstract class BotBuilder {
 		if(dialog == null) throw new Exception("Dialog not initialized")
 		Dialog copy = new Dialog()
 		copy.mode = dialog.mode
+		copy.onClose = dialog.onClose
 		for(DialogElement e : dialog.dialogElements) {
 			copy.dialogElements.add(e.copy())
 		}
