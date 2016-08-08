@@ -13,6 +13,13 @@ abstract class BotBuilder {
 	//runtime bot name
 	String name
 	
+	/**
+	 * By default when a dialog is closed current bot state is switched to DialogMode.search
+	 * when this option is enabled on dialog close event the context will return to default bot, keeping
+	 * this bot dialog session alive
+	 */
+	boolean switchToDefaultBotOnClose = false
+	
 	//set by agent
 	static Closure defaultProcessMessage = null
 	
@@ -64,6 +71,11 @@ abstract class BotBuilder {
 	//unless overridden the default message fallback should use handler registry object
 	Closure defaultHandleMessageFallback = null
 	Closure handleMessageFallback = null//{ AgentContext context, List<GraphObject> inputMessage ->
+	
+	
+	// AgentContext context, DialogQuestion question
+	// the closure returns help message context 
+	Closure helpMessageContent = null
 	
 	
 	//dialog pattern should be built once

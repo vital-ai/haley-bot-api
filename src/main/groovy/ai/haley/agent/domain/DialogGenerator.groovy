@@ -1,6 +1,8 @@
 package ai.haley.agent.domain
 
-import ai.haley.agent.builder.BotBuilder;
+import ai.haley.agent.api.AgentContext
+import ai.haley.agent.builder.BotBuilder
+import groovy.lang.Closure;;
 
 class DialogGenerator extends DialogElement {
 
@@ -12,7 +14,13 @@ class DialogGenerator extends DialogElement {
 	 * @return true if the generator is done and should be removed from the queue
 	 */
 	Closure generateDialog = null
+
 	
+	//by default all dialog generators are available
+	Closure available = { DialogGenerator thisElement, AgentContext context ->
+		return true
+	}
+		
 	@Override
 	public Object copy() {
 		DialogGenerator dg = new DialogGenerator()
