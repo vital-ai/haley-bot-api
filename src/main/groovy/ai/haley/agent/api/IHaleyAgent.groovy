@@ -49,5 +49,7 @@ interface IHaleyAgent {
 	//get external vitalservice by name
 	public VitalService getVitalService(String name)
 	
+	public boolean isAnonymous()
+	
 	
 }

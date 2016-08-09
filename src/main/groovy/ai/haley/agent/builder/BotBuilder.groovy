@@ -71,6 +71,14 @@ abstract class BotBuilder {
 	Closure helpMessageContent = null
 	
 	
+	/**
+	 * An optional handler that is called after the bot is switched to and before inital messages are processed
+	 * returning true would exit the processing thread immediately
+	 * Params: AgentContext context, ActionSource actionSource, List<GraphObject>... intitialMessages
+	 */
+	Closure onBotSwitched = null//{}() closure, which can be passed events to be handled upon the switch. Dariusz Kobylarz 
+	
+	
 	//dialog pattern should be built once
 	private Dialog dialog
 
