@@ -37,6 +37,14 @@ abstract class BotBuilder {
 		
 	Closure handleGetFacts = null
 		
+	
+	// { AgentContext context, String entity, String fact --> list of properties
+	
+	Closure handleRecall = null
+	
+	
+	
+	
 	//optional registry called before handle all closure
 //	HandlerRegistry handleAllRegistry = null
 	private List<MessageHandler> handleAllHandlers = []
