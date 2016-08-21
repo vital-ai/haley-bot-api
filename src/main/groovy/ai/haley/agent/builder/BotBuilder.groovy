@@ -38,11 +38,33 @@ abstract class BotBuilder {
 	Closure handleGetFacts = null
 		
 	
-	// { AgentContext context, String entity, String fact --> list of properties
 	
-	Closure handleRecall = null
+	Map<String, Closure> closureServiceRegistry = [:]
 	
 	
+	public void addServiceClosure(String key, Closure service) {
+		
+		closureServiceRegistry[key] = service
+	}
+	
+	
+	public boolean removeServiceClosure(String key) {
+		
+		if(closureServiceRegistry.containsKey(key)) {
+			
+			closureServiceRegistry.remove(key)
+			
+			return true
+		}
+		
+		return false
+		
+	}
+	
+	public Closure getServiceClosure(String key) {
+		
+		return closureServiceRegistry.get(key)
+	}
 	
 	
 	//optional registry called before handle all closure
