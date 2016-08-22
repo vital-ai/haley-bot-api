@@ -10,6 +10,7 @@ import ai.vital.vitalsigns.model.VITAL_Container
 import com.vitalai.aimp.domain.AIMPMessage
 import com.vitalai.aimp.domain.BaseProfile
 import com.vitalai.aimp.domain.BooleanPropertyFact
+import com.vitalai.aimp.domain.Channel
 import com.vitalai.aimp.domain.CurrentBotMessage
 import com.vitalai.aimp.domain.DialogStatusMessage
 import com.vitalai.aimp.domain.DoublePropertyFact
@@ -24,6 +25,8 @@ interface AgentContext {
 	BaseProfile getProfile()
 
 	Session getSession()
+	
+	Channel getChannel()
 	
 	BotSessionState getDialogState()	
 	
