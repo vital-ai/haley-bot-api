@@ -20,8 +20,6 @@ interface BotSessionState {
 
 	DialogMode getMode()
 	
-	InteractionMode getInteractionMode()
-	
 	DialogQueue getQueue()
 
 	DialogHistory getHistory()

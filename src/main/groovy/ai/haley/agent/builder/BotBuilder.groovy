@@ -14,8 +14,6 @@ abstract class BotBuilder {
 	//runtime bot name
 	String name
 	
-	InteractionMode defaultInteractionMode = InteractionMode.direct
-	
 	//set by agent
 	static Closure defaultProcessMessage = null
 	
@@ -162,10 +160,6 @@ abstract class BotBuilder {
 		
 		if(dialog == null) throw new Exception("Dialog not initialized")
 		Dialog copy = new Dialog()
-		copy.interactionMode = dialog.interactionMode
-		if(copy.interactionMode == null) {
-			copy.interactionMode = defaultInteractionMode
-		}
 		copy.mode = dialog.mode
 		copy.onClose = dialog.onClose
 		copy.cleanup = dialog.cleanup
