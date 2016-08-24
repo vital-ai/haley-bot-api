@@ -4,6 +4,7 @@ import com.vitalai.aimp.domain.AIMPMessage;
 
 import ai.haley.agent.api.AgentContext
 import ai.haley.agent.api.IHaleyAgent
+import ai.haley.agent.api.InteractionMode;
 import ai.haley.agent.api.MessageHandler
 import ai.haley.agent.domain.DialogElement;
 import groovy.lang.Closure;
@@ -12,6 +13,8 @@ abstract class BotBuilder {
 
 	//runtime bot name
 	String name
+	
+	InteractionMode defaultInteractionMode = InteractionMode.direct
 	
 	//set by agent
 	static Closure defaultProcessMessage = null
@@ -159,8 +162,13 @@ abstract class BotBuilder {
 		
 		if(dialog == null) throw new Exception("Dialog not initialized")
 		Dialog copy = new Dialog()
+		copy.interactionMode = dialog.interactionMode
+		if(copy.interactionMode == null) {
+			copy.interactionMode = defaultInteractionMode
+		}
 		copy.mode = dialog.mode
 		copy.onClose = dialog.onClose
+		copy.cleanup = dialog.cleanup
 		for(DialogElement e : dialog.dialogElements) {
 			copy.dialogElements.add(e.copy())
 		}
