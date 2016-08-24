@@ -153,5 +153,11 @@ interface AgentContext {
 	 * @param message(s)
 	 */
 	void switchToBot(AIMPMessage inputMessage, String botName, List<GraphObject>... messages)
-		
+
+	
+	/**
+	 * Sends a message to be processed internally within the same context
+	 */
+	void sendInnerMessage(AIMPMessage message, List<GraphObject> payload)
+	
 }
