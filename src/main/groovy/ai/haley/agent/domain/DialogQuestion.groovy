@@ -71,6 +71,8 @@ class DialogQuestion extends DialogElement {
 	//a fact for this question was created etc
 	boolean handled = false
 	
+	Double index = null
+	
 	//by default all questions are available
 	Closure available = { DialogQuestion questionData, AgentContext context ->
 		return true
@@ -81,6 +83,8 @@ class DialogQuestion extends DialogElement {
 	
 	//list of answers to this question
 	List<List<GraphObject>> answers = []
+	
+	String lastAnswer = null
 	
 	//process answer, if returns true no more processing is necessary, returning false means a new question should be popped
 	
@@ -121,6 +125,7 @@ class DialogQuestion extends DialogElement {
 //		q.factsURIs = factsURIs
 		q.generated = generated
 		q.id = id
+		q.index = index
 //		q.helpRequested = helpRequested
 		q.multipleFacts = multipleFacts
 		q.parentFactURI = parentFactURI

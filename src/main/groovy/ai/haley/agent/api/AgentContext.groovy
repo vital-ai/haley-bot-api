@@ -1,5 +1,6 @@
 package ai.haley.agent.api
 
+import ai.haley.agent.domain.DialogPageStart;
 import ai.haley.agent.domain.DialogQuestion
 import ai.vital.domain.VITAL_Fact
 import ai.vital.vitalservice.VitalStatus
@@ -53,6 +54,8 @@ interface AgentContext {
 //	}
 	
 	public void sendQuestion(DialogQuestion nextQuestion, AIMPMessage msg, String questionTextPrefix)
+	
+	public void sendDialogPageQuestion(DialogPageStart dialogPageStart, DialogQuestion nextQuestion, AIMPMessage msg, String questionTextPrefix)
 	
 	
 	public int removeFacts(FactScope scope, String factName)

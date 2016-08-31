@@ -1,7 +1,10 @@
 package ai.haley.agent.api
 
 import ai.haley.agent.domain.DialogElement
-import ai.haley.agent.domain.DialogGenerator;
+import ai.haley.agent.domain.DialogGenerator
+import ai.haley.agent.domain.DialogPageEnd
+import ai.haley.agent.domain.DialogPageQuestionsEnd;
+import ai.haley.agent.domain.DialogPageStart;
 import ai.haley.agent.domain.DialogQuestion
 import ai.haley.agent.domain.DialogQuestionEnd;;
 
@@ -208,6 +211,93 @@ class DialogQueue {
 		
 		return els	
 		
+		
+	}
+	
+	/**
+	 * Returns current dialog page elements, only valid if peek element is a question 
+	 * @return
+	 */
+	public List<DialogElement> getCurrentPage() {
+		
+		if( ! ( peekElement() instanceof DialogPageStart) ) throw new Exception("No active dialog question page on top of the queue")
+		
+		List<DialogElement> pageEls = []
+
+		int i = 0
+		
+		while(i >= 0) {
+			
+			if(i >= queue.size()) {
+				throw new Exception("No DialogPageEnd found!")
+			}
+			
+			DialogElement el = queue.get(i)
+			
+			pageEls.add(el)
+			
+			if(el instanceof DialogPageEnd) {
+				i = -1
+			} else {
+				i++
+			}
+			
+		}
+		
+		return pageEls
+				
+		
+	}
+	
+	public List<DialogElement> getNextPage() {
+		
+		if( ! ( peekElement() instanceof DialogPageStart) ) throw new Exception("No active dialog question page on top of the queue")
+		
+		List<DialogElement> nextPageEls = null
+		
+		boolean inNextPage = false
+		
+		for(int i = 1 ; i < queue.size(); i++) {
+			
+			DialogElement el = queue.get(i)
+			
+			if(el instanceof DialogPageStart) {
+				nextPageEls = []
+				inNextPage = true
+			}
+			
+			if(inNextPage) nextPageEls.add(el)
+			
+			if(inNextPage && el instanceof DialogPageEnd) {
+				break
+			}
+
+		}
+		
+		return nextPageEls
+		
+	}
+
+	void removePageElement(DialogElement el) {
+		
+		if( ! ( peekElement() instanceof DialogPageStart) ) throw new Exception("No active dialog question page on top of the queue")
+		
+		if(el instanceof DialogPageStart || el instanceof DialogPageEnd || el instanceof DialogPageQuestionsEnd) {
+			throw new Exception("Cannot remove page frame element from question page: " + el.getClass().getSimpleName());
+		}
+		
+		for(int i = 1; i < queue.size(); i++) {
+			
+			DialogElement d = queue.get(i)
+			
+			if( d == el || (d.id != null && el.id != null && d.id == el.id) ) {
+				
+				queue.remove(i)
+				return
+				
+			}
+			
+		}
 		
 	}
 }

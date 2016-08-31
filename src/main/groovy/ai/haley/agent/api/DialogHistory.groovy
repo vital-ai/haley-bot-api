@@ -1,7 +1,11 @@
 package ai.haley.agent.api
 
+import java.util.List;
+
 import ai.haley.agent.domain.DialogElement
 import ai.haley.agent.domain.DialogGenerator
+import ai.haley.agent.domain.DialogPageEnd
+import ai.haley.agent.domain.DialogPageStart;
 import ai.haley.agent.domain.DialogQuestion
 import ai.haley.agent.domain.DialogQuestionEnd
 import ai.haley.agent.domain.DialogQuestionStart
@@ -200,4 +204,39 @@ class DialogHistory {
 		
 	}	
 	
+	public List<DialogElement> getPreviousPage(boolean removeFromStack) {
+		
+//		if(queue.size() == 0 || !( queue.get(queue.size() - 1) instanceof DialogPageEnd)) {
+//
+//		}
+		
+		//if( ! ( peekElement() instanceof DialogPageStart) ) throw new Exception("No active dialog question page on top of the queue")
+		
+		List<DialogElement> previousPage = null
+
+		boolean inPage = false
+		
+		for(int j = queue.size() - 1 ; j >= 0; j--) {
+			
+			DialogElement el = queue.get(j)
+			
+			if(el instanceof DialogPageEnd) {
+				inPage = true
+				previousPage = []
+			}
+			
+			if(inPage) {
+				if(removeFromStack) queue.remove(j)
+				previousPage.add(0, el)
+			}
+			
+			if(el instanceof DialogPageStart) {
+				break
+			}
+			
+		}
+		
+		return previousPage
+		
+	}
 }
