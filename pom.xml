@@ -51,12 +51,6 @@
       <version>0.1.0</version>
 	</dependency>
 
-	<dependency>
-      <groupId>com-vital</groupId>
-      <artifactId>haley</artifactId>
-      <version>0.1.0</version>
-	</dependency>
-	
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
