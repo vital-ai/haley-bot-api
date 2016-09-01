@@ -162,5 +162,20 @@ interface AgentContext {
 	 * Sends a message to be processed internally within the same context
 	 */
 	void sendInnerMessage(AIMPMessage message, List<GraphObject> payload)
+
 	
+	/**
+	 * Adds dialog page child question if not exists
+	 * @param parentQuestion
+	 * @param newChildQquestion
+	 * @return
+	 */
+	boolean addChildQuestion(DialogQuestion parentQuestion, DialogQuestion newChildQquestion)
+
+	/**
+	 * Removes page question by id, retracts facts and notifies client 
+	 * @param questionID
+	 * @return
+	 */
+	boolean removePageQuestion(String questionID)
 }

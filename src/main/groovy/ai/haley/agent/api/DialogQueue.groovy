@@ -280,7 +280,10 @@ class DialogQueue {
 
 	void removePageElement(DialogElement el) {
 		
-		if( ! ( peekElement() instanceof DialogPageStart) ) throw new Exception("No active dialog question page on top of the queue")
+		if( ! ( peekElement() instanceof DialogPageStart) ) {
+			printQueue()
+			throw new Exception("No active dialog question page on top of the queue")
+		}
 		
 		if(el instanceof DialogPageStart || el instanceof DialogPageEnd || el instanceof DialogPageQuestionsEnd) {
 			throw new Exception("Cannot remove page frame element from question page: " + el.getClass().getSimpleName());
@@ -298,6 +301,33 @@ class DialogQueue {
 			}
 			
 		}
+		
+	}
+	
+	void printQueue() {
+		println "QUEUE DUMP"
+		for(int i = 0 ; i < queue.size(); i++) {
+			DialogElement e = queue.get(i);
+			println i + ' ' + e.getClass().getSimpleName() + ' ' + e.id  
+		}
+	}
+	
+	void putIntoCurrentPage(DialogQuestion newQuestion) {
+		
+		if( ! ( peekElement() instanceof DialogPageStart) ) throw new Exception("No active dialog question page on top of the queue")
+		
+		for( int i = 1; i < queue.size(); i++) {
+			
+			DialogElement el = queue.get(i)
+			
+			if(el instanceof DialogPageQuestionsEnd) {
+				queue.add(i, newQuestion)
+				return
+			}
+			
+		}
+		
+		throw new Exception("No DialogPageQuestionsEnd element found");
 		
 	}
 }

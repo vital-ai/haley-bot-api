@@ -20,8 +20,11 @@ class DialogQuestion extends DialogElement {
 		//called when a question is reverted (go back requested)
 		//by default all associated facts are removed, closure returns nothing
 		revert = { DialogQuestion thisQuestion, AgentContext context ->
-//			context.removeFactsByQuestion(thisQuestion)
+			
+			
+			context.removeFactsByQuestion(thisQuestion)
 
+			/*
 			if(thisQuestion.factsURIs.size() == 0) return
 						
 			DialogInnerMessage innerMsg = new DialogInnerMessage()
@@ -32,8 +35,13 @@ class DialogQuestion extends DialogElement {
 			}
 			
 			context.dialogState.queue.putOnTop(innerMsg)
+			*/
+			
 		}
 	}
+	
+	//transient parent questions
+	DialogQuestion parentQuestion
 	
 	//set when the question is sent to the user
 	boolean sent = false
