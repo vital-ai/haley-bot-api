@@ -330,4 +330,29 @@ class DialogQueue {
 		throw new Exception("No DialogPageQuestionsEnd element found");
 		
 	}
+	
+	DialogElement getFirstElementAfterCurrentPage() {
+		
+		if( ! ( peekElement() instanceof DialogPageStart) ) throw new Exception("No active dialog question page on top of the queue")
+		
+		int i = 1;
+		
+		for( ; i < queue.size(); i++) {
+			
+			DialogElement el = queue.get(i)
+			
+			if(el instanceof DialogPageEnd) {
+				i++
+				break
+			}
+
+		}
+		
+		if(i >= queue.size()) throw new Exception("No DialogPageEnd found")
+		
+		if(i >= queue.size() -1) return null;
+		
+		return queue.get(i)
+		
+	}
 }

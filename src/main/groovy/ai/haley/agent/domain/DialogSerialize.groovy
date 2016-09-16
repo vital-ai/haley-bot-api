@@ -189,6 +189,7 @@ class DialogSerialize extends DialogElement {
 	public Object copy() {
 		DialogSerialize ds = new DialogSerialize()
 		ds.id = id
+		ds.factsFilter = factsFilter
 		ds.factsGraphFilter = factsGraphFilter
 		ds.predictionObjectsFilter = predictionObjectsFilter
 		ds.resultListObjectsFilter = resultListObjectsFilter
