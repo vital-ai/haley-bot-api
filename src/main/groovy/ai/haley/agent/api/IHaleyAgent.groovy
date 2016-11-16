@@ -21,6 +21,8 @@ interface IHaleyAgent {
 	
 	public VitalSegment getProfilesSegment()
 	
+	public VitalSegment getLoginsSegment()
+	
 	public void shutdown()
 	
 	public VitalApp getApp()
