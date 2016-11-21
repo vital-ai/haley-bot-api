@@ -29,6 +29,8 @@ interface AgentContext {
 	
 	Channel getChannel()
 	
+	InteractionMode getChannelInteractionMode()
+	
 	BotSessionState getDialogState()	
 	
 	//objects to be saved/deleted at the end of request
