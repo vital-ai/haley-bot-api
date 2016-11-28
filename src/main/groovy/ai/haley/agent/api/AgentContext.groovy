@@ -13,10 +13,12 @@ import com.vitalai.aimp.domain.BaseProfile
 import com.vitalai.aimp.domain.BooleanPropertyFact
 import com.vitalai.aimp.domain.Channel
 import com.vitalai.aimp.domain.CurrentBotMessage
+import com.vitalai.aimp.domain.DataModificationEvent;
 import com.vitalai.aimp.domain.DialogStatusMessage
 import com.vitalai.aimp.domain.DoublePropertyFact
 import com.vitalai.aimp.domain.HaleyTextMessage
 import com.vitalai.aimp.domain.IntegerPropertyFact
+import com.vitalai.aimp.domain.ProcessorRequestMessage;
 import com.vitalai.aimp.domain.Session
 import com.vitalai.aimp.domain.StringPropertyFact
 import com.vitalai.aimp.domain.UnsetFactMessage
@@ -180,4 +182,19 @@ interface AgentContext {
 	 * @return
 	 */
 	boolean removePageQuestion(String questionID)
+	
+	
+	/**
+	 * Send data modification event
+	 */
+	void sendDataModificationEvent(Class<? extends GraphObject> graphObjectClass, String objectURI)
+	
+	/**
+	 * Sends a processor request message. The input message requestURI is used if provided
+	 * @param processor
+	 * @param inputMessage
+	 * @param request
+	 * @param payload
+	 */
+	void sendProcessorRequest(String processor, AIMPMessage inputMessage, ProcessorRequestMessage request,List<GraphObject> payload)
 }
