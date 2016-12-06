@@ -1,6 +1,6 @@
 package ai.haley.agent.api
 
-import ai.haley.agent.domain.DialogPageStart;
+import ai.haley.agent.domain.DialogPageStart
 import ai.haley.agent.domain.DialogQuestion
 import ai.vital.domain.VITAL_Fact
 import ai.vital.vitalservice.VitalStatus
@@ -13,12 +13,11 @@ import com.vitalai.aimp.domain.BaseProfile
 import com.vitalai.aimp.domain.BooleanPropertyFact
 import com.vitalai.aimp.domain.Channel
 import com.vitalai.aimp.domain.CurrentBotMessage
-import com.vitalai.aimp.domain.DataModificationEvent;
 import com.vitalai.aimp.domain.DialogStatusMessage
 import com.vitalai.aimp.domain.DoublePropertyFact
 import com.vitalai.aimp.domain.HaleyTextMessage
 import com.vitalai.aimp.domain.IntegerPropertyFact
-import com.vitalai.aimp.domain.ProcessorRequestMessage;
+import com.vitalai.aimp.domain.ProcessorRequestMessage
 import com.vitalai.aimp.domain.Session
 import com.vitalai.aimp.domain.StringPropertyFact
 import com.vitalai.aimp.domain.UnsetFactMessage
@@ -197,4 +196,10 @@ interface AgentContext {
 	 * @param payload
 	 */
 	void sendProcessorRequest(String processor, AIMPMessage inputMessage, ProcessorRequestMessage request,List<GraphObject> payload)
+	
+	/**
+	 * Returns default botID (name) of current channel
+	 * @param defaultBotID 
+	 */
+	String getDefaultBotID()
 }

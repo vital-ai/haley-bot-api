@@ -14,14 +14,7 @@ import ai.vital.vitalsigns.model.property.URIProperty
 
 interface IHaleyAgent {
 
-	public String getDefaultBotID()
-
-	public Set<String> getBrokenBots()
-//	public Set<String> brokenBots = new HashSet<String>()
-	
-	public VitalSegment getProfilesSegment()
-	
-	public VitalSegment getLoginsSegment()
+	public VitalSegment getBaseSegment()
 	
 	public void shutdown()
 	
