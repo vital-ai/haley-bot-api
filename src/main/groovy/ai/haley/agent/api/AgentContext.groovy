@@ -202,4 +202,23 @@ interface AgentContext {
 	 * @param defaultBotID 
 	 */
 	String getDefaultBotID()
+	
+
+	/**
+	 * A method for cross channel communication. I can be used to to current channel.	
+	 * @param channelName
+	 * @param input
+	 * @param output
+	 * @param payload
+	 */
+	void sendMessageToChannel(String channelName, AIMPMessage input, AIMPMessage output, List<GraphObject> payload)
+	
+	/**
+	 * Shortcut for sending text only messages to a channel 
+	 * @param channelName
+	 * @param input
+	 * @param text
+	 */
+	void sendTextMessageToChannel(String channelName, AIMPMessage input, String text)
+	
 }
