@@ -18,8 +18,10 @@ import com.vitalai.aimp.domain.DoublePropertyFact
 import com.vitalai.aimp.domain.HaleyTextMessage
 import com.vitalai.aimp.domain.IntegerPropertyFact
 import com.vitalai.aimp.domain.ProcessorRequestMessage
+import com.vitalai.aimp.domain.PropertyFact
 import com.vitalai.aimp.domain.Session
 import com.vitalai.aimp.domain.StringPropertyFact
+import com.vitalai.aimp.domain.TruthPropertyFact
 import com.vitalai.aimp.domain.UnsetFactMessage
 
 interface AgentContext {
@@ -68,6 +70,8 @@ interface AgentContext {
 	public VITAL_Container getFactsContainerView(FactScope scope)	
 	
 	public Set<String> setFact(FactScope scope, DialogQuestion sourceQuestion, String answer)
+	
+	public Set<String> setFact(FactScope scope, String parentFactURI, Class<? extends PropertyFact> factClass, String propertyName, Object val, boolean multivalue)
 
 	//utility method
 	//TODO
@@ -108,6 +112,14 @@ interface AgentContext {
 	
 	public DoublePropertyFact getDoubleFactForFact(FactScope scope, String parentURI, String factName)
 
+	public TruthPropertyFact getTruthFact(FactScope scope, String factName)
+	
+	public TruthPropertyFact getTruthFactForFact(FactScope scope, String parentURI, String factName)
+	
+	public PropertyFact getFact(FactScope scope, String factName)
+	
+	public Object getFactValue(FactScope scope, String factName)
+	
 	
 	
 	
@@ -220,5 +232,7 @@ interface AgentContext {
 	 * @param text
 	 */
 	void sendTextMessageToChannel(String channelName, AIMPMessage input, String text)
-	
+
+	void restartCurrentBot()
+		
 }
