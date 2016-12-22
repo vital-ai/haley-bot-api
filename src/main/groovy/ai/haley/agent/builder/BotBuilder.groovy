@@ -33,13 +33,11 @@ abstract class BotBuilder {
 		
 	Closure handleSetFact = null
 		
-	//{ AgentContext context, List<GraphObject> inputMessage ->
+	//AgentContext context, List<GraphObject> inputMessage ->
 	Closure defaultHandleGetFacts = null
 		
 	Closure handleGetFacts = null
 		
-	
-	
 	Map<String, Closure> closureServiceRegistry = [:]
 	
 	

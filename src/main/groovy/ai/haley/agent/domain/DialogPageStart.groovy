@@ -11,11 +11,14 @@ import groovy.lang.Closure;
  * question2
  * ...
  * questionN
+ * or dialogpagetext or dialogbuttonelement 
  * end-page-questions
  * datascript-call
  * query-call-insert
  * end-page
  * dialog-generator
+ *  
+ *  special pages (goodbyePage=true) should not have any question elements as the dialog is meant to be over at this point 
  *  
  * @author Derek
  *
@@ -25,6 +28,8 @@ class DialogPageStart extends DialogElement {
 	int page
 	
 	int total
+	
+	boolean goodbyePage = false
 	
 	String title
 	
@@ -43,6 +48,7 @@ class DialogPageStart extends DialogElement {
 	public Object copy() {
 		DialogPageStart d = new DialogPageStart()
 		d.available = available
+		d.goodbyePage = goodbyePage
 		d.id = id
 		d.page = page
 		d.revert = revert
