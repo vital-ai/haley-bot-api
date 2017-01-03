@@ -123,9 +123,7 @@ interface AgentContext {
 	
 	public Object getFactValue(FactScope scope, String factName)
 	
-	
-	
-	
+	public List<Object> getFactValues(FactScope scope, String factName)
 	
 	
 	//purges profile and session facts

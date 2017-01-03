@@ -30,6 +30,8 @@ interface BotSessionState {
 	
 	String getBotID()
 	
+	String getBotURI()
+	
 	BotBuilder getBotBuilder()
 	
 	void clearDialogFacts() 

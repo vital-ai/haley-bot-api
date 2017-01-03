@@ -92,8 +92,6 @@ class DialogQuestion extends DialogElement {
 	//list of answers to this question
 	List<List<GraphObject>> answers = []
 	
-	String lastAnswer = null
-	
 	//process answer, if returns true no more processing is necessary, returning false means a new question should be popped
 	
 	//	returning true means that it’s not expecting any more messages to arrive and that it’s “done” and can be removed from the dialog queue
