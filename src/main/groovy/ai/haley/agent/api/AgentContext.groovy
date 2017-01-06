@@ -24,6 +24,7 @@ import com.vitalai.aimp.domain.Session
 import com.vitalai.aimp.domain.StringPropertyFact
 import com.vitalai.aimp.domain.TruthPropertyFact
 import com.vitalai.aimp.domain.UnsetFactMessage
+import com.vitalai.aimp.domain.UserProfile;
 
 interface AgentContext {
 
@@ -235,5 +236,9 @@ interface AgentContext {
 	void sendTextMessageToChannel(String channelName, AIMPMessage input, String text)
 
 	void restartCurrentBot()
-		
+	
+	List<BaseProfile> getChannelUsers()
+
+	List<Session> getChannelSessions()
+			
 }
