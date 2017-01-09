@@ -240,5 +240,12 @@ interface AgentContext {
 	List<BaseProfile> getChannelUsers()
 
 	List<Session> getChannelSessions()
+	
+	/**
+	 * Closes given session. Returns true if ok, false if session not found
+	 * @param session
+	 * @return
+	 */
+	boolean closeSession(Session session)
 			
 }
