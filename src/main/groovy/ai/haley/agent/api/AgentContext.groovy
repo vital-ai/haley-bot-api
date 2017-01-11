@@ -24,7 +24,6 @@ import com.vitalai.aimp.domain.Session
 import com.vitalai.aimp.domain.StringPropertyFact
 import com.vitalai.aimp.domain.TruthPropertyFact
 import com.vitalai.aimp.domain.UnsetFactMessage
-import com.vitalai.aimp.domain.UserProfile;
 
 interface AgentContext {
 
@@ -239,13 +238,32 @@ interface AgentContext {
 	
 	List<BaseProfile> getChannelUsers()
 
-	List<Session> getChannelSessions()
+	List<ChannelSession> getChannelSessions()
 	
 	/**
 	 * Closes given session. Returns true if ok, false if session not found
 	 * @param session
 	 * @return
 	 */
-	boolean closeSession(Session session)
+	boolean closeChannelSession(ChannelSession session)
+	
+	/**
+	 * Unloads current bot. Returns true if succeeded, false if bot couldn't be unloaded
+	 * @return
+	 */
+	boolean unloadBot()
 			
+	/**
+	 * timestamp when last non-tick message was sent to a channel
+	 */
+	Long getLastChannelActivityTimestamp()
+	
+	/**
+	 * timestamp when last non-tick message was processed by current bot
+	 * may be <code>null</code> if current bot was unloaded
+	 */
+	Long getLastBotActivityTimestamp()
+	
+	
+	
 }
