@@ -23,6 +23,7 @@ import com.vitalai.aimp.domain.PropertyFact
 import com.vitalai.aimp.domain.Session
 import com.vitalai.aimp.domain.StringPropertyFact
 import com.vitalai.aimp.domain.TruthPropertyFact
+import com.vitalai.aimp.domain.URIPropertyFact
 import com.vitalai.aimp.domain.UnsetFactMessage
 
 interface AgentContext {
@@ -114,6 +115,10 @@ interface AgentContext {
 	public DoublePropertyFact getDoubleFact(FactScope scope, String factName)
 	
 	public DoublePropertyFact getDoubleFactForFact(FactScope scope, String parentURI, String factName)
+	
+	public URIPropertyFact getURIFact(FactScope scope, String factName)
+	
+	public URIPropertyFact getURIFactForFact(FactScope scope, String parentURI, String factName)
 
 	public TruthPropertyFact getTruthFact(FactScope scope, String factName)
 	
