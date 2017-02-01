@@ -14,8 +14,7 @@ class DialogQuery extends DialogElement {
 	 */ 
 	boolean createResultListFact = false
 	
-	//set when fact is created
-	String resultListFactURI = null
+	String factName
 	
 	//by default queries local agent service
 	String serviceName

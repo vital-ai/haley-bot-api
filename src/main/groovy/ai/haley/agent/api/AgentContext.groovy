@@ -3,11 +3,9 @@ package ai.haley.agent.api
 import ai.haley.agent.domain.DialogElement
 import ai.haley.agent.domain.DialogPageStart
 import ai.haley.agent.domain.DialogQuestion
-import ai.vital.domain.VITAL_Fact
 import ai.vital.vitalservice.VitalStatus
 import ai.vital.vitalservice.query.ResultList
 import ai.vital.vitalsigns.model.GraphObject
-import ai.vital.vitalsigns.model.VITAL_Container
 
 import com.vitalai.aimp.domain.AIMPMessage
 import com.vitalai.aimp.domain.BaseProfile
@@ -16,8 +14,11 @@ import com.vitalai.aimp.domain.Channel
 import com.vitalai.aimp.domain.CurrentBotMessage
 import com.vitalai.aimp.domain.DialogStatusMessage
 import com.vitalai.aimp.domain.DoublePropertyFact
+import com.vitalai.aimp.domain.GraphObjectFact;
 import com.vitalai.aimp.domain.HaleyTextMessage
+import com.vitalai.aimp.domain.HyperEdge_hasListFactElement
 import com.vitalai.aimp.domain.IntegerPropertyFact
+import com.vitalai.aimp.domain.ListFact
 import com.vitalai.aimp.domain.ProcessorRequestMessage
 import com.vitalai.aimp.domain.PropertyFact
 import com.vitalai.aimp.domain.Session
@@ -56,10 +57,6 @@ interface AgentContext {
 	public AIMPMessage sendGenericMessage(AIMPMessage input, AIMPMessage output, GraphObject... payload)	
 	
 	
-//	public List<GraphObject> getFactsGraph(FactScope scope) {
-//		return new ArrayList<GraphObject>( _getContainer(scope).factsGraph.getAllObjects() )	
-//	}
-	
 	public void sendQuestion(DialogQuestion nextQuestion, AIMPMessage msg, String questionTextPrefix)
 	
 	public void sendDialogPageQuestion(DialogPageStart dialogPageStart, DialogQuestion nextQuestion, AIMPMessage msg, String questionTextPrefix)
@@ -71,12 +68,16 @@ interface AgentContext {
 	
 //	public FactsContainer getFactsContainer(FactScope scope)
 	
-	public VITAL_Container getFactsContainerView(FactScope scope)	
-	
 	public Set<String> setFact(FactScope scope, DialogQuestion sourceQuestion, String answer)
 	
 	public Set<String> setFact(FactScope scope, String parentFactURI, Class<? extends PropertyFact> factClass, String propertyName, Object val, boolean multivalue)
 
+	
+	public Set<String> setListFact(FactScope scope, ListFact listFact, List<GraphObject> objects, Map<String, HyperEdge_hasListFactElement> listHyperEdgesPrototypes)
+	
+	public Set<String> setGraphObjectFact(FactScope scope, GraphObjectFact fact, GraphObject object)
+	
+	
 	//utility method
 	//TODO
 //	public Set<String> setFact(FactScope scope, GraphObject parentObject, PropertyFactInfo factInfo, Object value)	
@@ -99,30 +100,18 @@ interface AgentContext {
 	
 	public StringPropertyFact getStringFact(FactScope scope, String factName)
 	
-	public StringPropertyFact getStringFactForFact(FactScope scope, String parentURI, String factName)
-	
 	public BooleanPropertyFact getBooleanFact(FactScope scope, String factName)
 	
-	public BooleanPropertyFact getBooleanFactForFact(FactScope scope, String parentURI, String factName) 
-	
 	public IntegerPropertyFact getIntegerFact(FactScope scope, String factName)
-	
-	public IntegerPropertyFact getIntegerFactForFact(FactScope scope, String parentURI, String factName)
 	
 	public List<IntegerPropertyFact> getIntegerFactsList(FactScope scope, String factName)
 	
 	
 	public DoublePropertyFact getDoubleFact(FactScope scope, String factName)
 	
-	public DoublePropertyFact getDoubleFactForFact(FactScope scope, String parentURI, String factName)
-	
 	public URIPropertyFact getURIFact(FactScope scope, String factName)
 	
-	public URIPropertyFact getURIFactForFact(FactScope scope, String parentURI, String factName)
-
 	public TruthPropertyFact getTruthFact(FactScope scope, String factName)
-	
-	public TruthPropertyFact getTruthFactForFact(FactScope scope, String parentURI, String factName)
 	
 	public PropertyFact getFact(FactScope scope, String factName)
 	
@@ -148,25 +137,22 @@ interface AgentContext {
 
 	GraphObject getFactGraphRoot(FactScope scope)
 
-	VITAL_Fact addGenericFactObject(FactScope scope, GraphObject factParent, VITAL_Fact childFact)
-
-	
 	/**
-	 * Resolves a resultlist that's stored in a fact
+	 * Resolves a resultlist that's stored as a fact
 	 * @param scope
-	 * @param resultListFactURI
-	 * @return ResultList or null if not found
+	 * @param factName
+	 * @return ResultList or null if not found or different fact type 
 	 */
-	ResultList getResultList(FactScope scope, String resultListFactURI)
+	ResultList getResultList(FactScope scope, String factName)
 
 	
 	/**
 	 * Resolves solution objects
 	 * @param scope
-	 * @param solutionFactURI
+	 * @param factName
 	 * @return List<GraphObject> of this solution of null if not found
 	 */
-	List<GraphObject> getSolutionObjects(FactScope scope, String solutionFactURI)
+	List<GraphObject> getSolutionObjects(FactScope scope, String factName)
 	
 	
 	/**
@@ -269,6 +255,9 @@ interface AgentContext {
 	 */
 	Long getLastBotActivityTimestamp()
 	
+
+	List<GraphObject> getAllFactObjects(FactScope fs)
 	
+	Set<String> setPropertyFact(FactScope fs, List<PropertyFact> vals)
 	
 }

@@ -10,10 +10,8 @@ import ai.vital.vitalsigns.model.VITAL_HyperEdge;
 import ai.vital.vitalsigns.model.VITAL_HyperNode
 import ai.vital.vitalsigns.model.VITAL_Node
 
-import com.vitalai.aimp.domain.DialogSession;
-import com.vitalai.aimp.domain.HyperEdge_hasPredictionElement;
-import com.vitalai.aimp.domain.HyperEdge_hasRecommendationElement;
-import com.vitalai.aimp.domain.HyperEdge_hasResultElement
+import com.vitalai.aimp.domain.DialogSession
+import com.vitalai.aimp.domain.HyperEdge_hasListFactElement;
 import com.vitalai.aimp.domain.PredictionFact;
 import com.vitalai.aimp.domain.PropertyFact
 import com.vitalai.aimp.domain.ResultListFact
@@ -79,7 +77,7 @@ class DialogSerialize extends DialogElement {
 				SolutionFact sf = fact
 				
 				List<GraphObject> recommendationElements = []
-				for(HyperEdge_hasRecommendationElement he : sf.getRecommendationElementHyperEdgesOut(GraphContext.Container, [container])) {
+				for(HyperEdge_hasListFactElement he : sf.getListFactElementHyperEdgesOut(GraphContext.Container, [container])) {
 					recommendationElements.add(he)
 					GraphObject dest = container.get(he.getDestinationURI())
 					if(dest != null) {
@@ -105,7 +103,7 @@ class DialogSerialize extends DialogElement {
 				ResultListFact rlf = fact
 				
 				List<GraphObject> resultListElements = []
-				for(HyperEdge_hasResultElement he : rlf.getResultElementHyperEdgesOut(GraphContext.Container, [container])) {
+				for(HyperEdge_hasListFactElement he : rlf.getListFactElementHyperEdgesOut(GraphContext.Container, [container])) {
 					resultListElements.add(he)
 					GraphObject dest = container.get(he.getDestinationURI())
 					if(dest != null) {
@@ -131,7 +129,7 @@ class DialogSerialize extends DialogElement {
 				PredictionFact pf = fact
 				
 				List<GraphObject> predictionElements = []
-				for(HyperEdge_hasPredictionElement he : pf.getPredictionElementHyperEdgesOut(GraphContext.Container, [container])) {
+				for(HyperEdge_hasListFactElement he : pf.getListFactElementHyperEdgesOut(GraphContext.Container, [container])) {
 					predictionElements.add(he)
 					GraphObject dest = container.get(he.getDestinationURI())
 					if(dest != null) {

@@ -10,7 +10,7 @@ class DialogRecommendations extends DialogElement {
 	boolean createSolutionFact = false
 	
 	//set when fact is created
-	String solutionFactURI = null
+	String factName = null
 	
 	
 	//a closure that returns function params, returns Map<String, Object>
