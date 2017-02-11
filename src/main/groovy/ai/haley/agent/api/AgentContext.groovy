@@ -259,5 +259,6 @@ interface AgentContext {
 	List<GraphObject> getAllFactObjects(FactScope fs)
 	
 	Set<String> setPropertyFact(FactScope fs, List<PropertyFact> vals)
-	
+
+	Channel getChannelByName(String channelName)	
 }
