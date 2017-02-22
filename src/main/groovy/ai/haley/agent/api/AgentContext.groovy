@@ -23,6 +23,7 @@ import com.vitalai.aimp.domain.ProcessorRequestMessage
 import com.vitalai.aimp.domain.PropertyFact
 import com.vitalai.aimp.domain.Session
 import com.vitalai.aimp.domain.StringPropertyFact
+import com.vitalai.aimp.domain.ThinkingMessage;
 import com.vitalai.aimp.domain.TruthPropertyFact
 import com.vitalai.aimp.domain.URIPropertyFact
 import com.vitalai.aimp.domain.UnsetFactMessage
@@ -53,6 +54,8 @@ interface AgentContext {
 	public HaleyTextMessage replyWithText(AIMPMessage input, String text)
 	
 	public HaleyTextMessage sendTextMessage(AIMPMessage input, String text)
+	
+	public ThinkingMessage sendThinkingMessage(AIMPMessage input)
 	
 	public AIMPMessage sendGenericMessage(AIMPMessage input, AIMPMessage output, GraphObject... payload)	
 	
