@@ -14,6 +14,7 @@ import com.vitalai.aimp.domain.Channel
 import com.vitalai.aimp.domain.CurrentBotMessage
 import com.vitalai.aimp.domain.DialogStatusMessage
 import com.vitalai.aimp.domain.DoublePropertyFact
+import com.vitalai.aimp.domain.Endpoint
 import com.vitalai.aimp.domain.GraphObjectFact;
 import com.vitalai.aimp.domain.HaleyTextMessage
 import com.vitalai.aimp.domain.HyperEdge_hasListFactElement
@@ -35,6 +36,12 @@ interface AgentContext {
 	Session getSession()
 	
 	Channel getChannel()
+
+	//returns the only endpoint associated with this channel, null if not endpoint if shared endpoint case
+	Endpoint getEndpoint() 
+	
+	//returns all endpoints associated with this channel, or empty list if none
+	List<Endpoint> getEndpoints()	
 	
 	InteractionMode getChannelInteractionMode()
 	

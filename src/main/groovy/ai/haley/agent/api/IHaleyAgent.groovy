@@ -44,4 +44,9 @@ interface IHaleyAgent {
 	//get external vitalservice by name
 	public VitalService getVitalService(String name)
 	
+	/**
+	 * Returns master service name if runnning in prime agent instance or <code>null</code> if in prime master
+	 */
+	public String getMasterServiceName()
+	
 }
