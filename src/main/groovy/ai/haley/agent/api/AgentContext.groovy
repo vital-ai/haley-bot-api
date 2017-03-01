@@ -40,6 +40,9 @@ interface AgentContext {
 	//returns the only endpoint associated with this channel, null if not endpoint if shared endpoint case
 	Endpoint getEndpoint() 
 	
+	//returns endpoint for given uri if associated with this channel
+	Endpoint getEndpointForURI(String endpointURI)
+	
 	//returns all endpoints associated with this channel, or empty list if none
 	List<Endpoint> getEndpoints()	
 	
