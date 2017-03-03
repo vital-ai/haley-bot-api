@@ -15,6 +15,7 @@ import com.vitalai.aimp.domain.CurrentBotMessage
 import com.vitalai.aimp.domain.DialogStatusMessage
 import com.vitalai.aimp.domain.DoublePropertyFact
 import com.vitalai.aimp.domain.Endpoint
+import com.vitalai.aimp.domain.GeoLocationPropertyFact;
 import com.vitalai.aimp.domain.GraphObjectFact;
 import com.vitalai.aimp.domain.HaleyTextMessage
 import com.vitalai.aimp.domain.HyperEdge_hasListFactElement
@@ -118,6 +119,10 @@ interface AgentContext {
 	public IntegerPropertyFact getIntegerFact(FactScope scope, String factName)
 	
 	public List<IntegerPropertyFact> getIntegerFactsList(FactScope scope, String factName)
+	
+	public GeoLocationPropertyFact getGeoLocationPropertyFact(FactScope scope, String factName)
+	
+	public List<GeoLocationPropertyFact> getGeoLocationPropertyFactsList(FactScope scope, String factName)
 	
 	
 	public DoublePropertyFact getDoubleFact(FactScope scope, String factName)
