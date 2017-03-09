@@ -7,6 +7,8 @@ import ai.vital.vitalservice.VitalStatus
 import ai.vital.vitalservice.query.ResultList
 import ai.vital.vitalsigns.model.GraphObject
 
+import java.util.List;
+
 import com.vitalai.aimp.domain.AIMPMessage
 import com.vitalai.aimp.domain.BaseProfile
 import com.vitalai.aimp.domain.BooleanPropertyFact
@@ -163,6 +165,13 @@ interface AgentContext {
 	 */
 	ResultList getResultList(FactScope scope, String factName)
 
+	
+	/**
+	 * Resolves an arbitrary list fact
+	 * @param factName
+	 * @return List of graph objects or null if not found or different fact type
+	 */
+	List<GraphObject> getListFactValue(FactScope scope, String factName)
 	
 	/**
 	 * Resolves solution objects

@@ -7,7 +7,7 @@ import groovy.lang.Closure;;
 class DialogGenerator extends DialogElement {
 
 	/**
-	 * may be overwritten {DialogGenerator thisElement, AgentContext context}
+	 * may be overwritten {DialogGenerator thisElement, AgentContext context, List<GraphObject> inputMessage}
 	 * generates dialogs by pushing dialog elements at the top of the queue
 	 * if no questions are added then the message is sent to default handlers - out of dialog
 	 * default handler pushes all skipped questions and returns true
