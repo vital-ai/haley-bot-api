@@ -53,6 +53,21 @@ interface AgentContext {
 	
 	BotSessionState getDialogState()	
 	
+	
+	/**
+	 * Returns list of dialogs in current bot - designer bot builder case only
+	 * @throws Exception when current bot is not a designer bot builder
+	 * @return list of dialogs
+	 */
+	public List<String> getDialogNames() throws Exception
+	
+	/**
+	 * Returns current dialog name = designer bot builder case only
+	 * @throws Exception when current bot is not a designer bot builder
+	 * @return current dialog name
+	 */
+	public String getDialogName() throws Exception
+	
 	//objects to be saved/deleted at the end of request
 	
 	//do not expose this
@@ -288,4 +303,13 @@ interface AgentContext {
 	Set<String> setPropertyFact(FactScope fs, List<PropertyFact> vals)
 
 	Channel getChannelByName(String channelName)	
+	
+	
+	/**
+	 * Passes input message to chat rules engine.
+	 * If bot rules are disabled it does nothing
+	 * @param request
+	 */
+	void passRequestToChatRulesEngine(List<GraphObject> input)
+	
 }
