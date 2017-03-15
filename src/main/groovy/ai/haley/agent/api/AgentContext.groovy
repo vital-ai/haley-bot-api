@@ -310,6 +310,6 @@ interface AgentContext {
 	 * If bot rules are disabled it does nothing
 	 * @param request
 	 */
-	void passRequestToChatRulesEngine(List<GraphObject> input)
+	ChatRulesEngineResponse passRequestToChatRulesEngine(List<GraphObject> input)
 	
 }
