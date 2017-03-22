@@ -188,6 +188,15 @@ interface AgentContext {
 	 */
 	List<GraphObject> getListFactValue(FactScope scope, String factName)
 	
+	
+	/**
+	 * Returns an arbitrary graph object fact
+	 * @param scope
+	 * @param factName
+	 * @return graph object associated with a fact or null if not found or different fact type
+	 */
+	GraphObject getGraphObjectFactValue(FactScope scope, String factName)
+	
 	/**
 	 * Resolves solution objects
 	 * @param scope
@@ -311,5 +320,11 @@ interface AgentContext {
 	 * @param request
 	 */
 	ChatRulesEngineResponse passRequestToChatRulesEngine(List<GraphObject> input)
+
 	
+	ResultList callGlobalDialogDatascript(String name, Map<String, Object> params)
+
+	ResultList callAccountDialogDatascript(String accountURI, String name, Map<String, Object> params)	
+	
+		
 }
