@@ -46,6 +46,13 @@ interface AgentContext {
 	//returns endpoint for given uri if associated with this channel
 	Endpoint getEndpointForURI(String endpointURI)
 	
+	/**
+	 * returns endpoint by URI as long as it's associated with account, <code>null</code> when not found
+	 * @param endpointURI
+	 * @return
+	 */
+	Endpoint getEndpointByURI(String endpointURI)
+	
 	//returns all endpoints associated with this channel, or empty list if none
 	List<Endpoint> getEndpoints()	
 	
@@ -312,6 +319,8 @@ interface AgentContext {
 	Set<String> setPropertyFact(FactScope fs, List<PropertyFact> vals)
 
 	Channel getChannelByName(String channelName)	
+	
+	Channel getChannelByURI(String channelURI)
 	
 	
 	/**
