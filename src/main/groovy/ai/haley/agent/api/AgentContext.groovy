@@ -334,6 +334,12 @@ interface AgentContext {
 	ResultList callGlobalDialogDatascript(String name, Map<String, Object> params)
 
 	ResultList callAccountDialogDatascript(String accountURI, String name, Map<String, Object> params)	
-	
+
+	/**
+	 * Resolves runtime fact scope
+	 * @param factScope
+	 * @return
+	 */
+	FactScope resolveFactScope(String factScope)
 		
 }

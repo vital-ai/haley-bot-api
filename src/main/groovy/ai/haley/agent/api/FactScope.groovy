@@ -74,7 +74,7 @@ class FactScope {
 	
 	public String name() {
 		if( scopeType == FactScopeType.dialog || scopeType == FactScopeType.channel || scopeType == FactScopeType.session ) {
-			return scopeType.name
+			return scopeType.name()
 		} else if(scopeType == FactScopeType.current_profile) {
 			return 'profile'
 		} else {
