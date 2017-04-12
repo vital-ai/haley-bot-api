@@ -22,7 +22,13 @@ class FactScope {
 			return FactScope.fromFactScopeType(value.substring("profile:".length()))
 		}
 		
-		FactScopeType fct = FactScopeType.valueOf(value)
+		FactScopeType fct = null
+		if(value == 'profile') {
+			fct = FactScopeType.current_profile
+		} else {
+			fct = FactScopeType.valueOf(value)
+		}
+		
 		return fromFactScopeType(fct)
 		
 	}
