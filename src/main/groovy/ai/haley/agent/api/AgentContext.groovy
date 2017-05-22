@@ -1,8 +1,10 @@
 package ai.haley.agent.api
 
+import ai.haley.agent.api.vitalsigns.JavaRefFact
 import ai.haley.agent.domain.DialogElement
 import ai.haley.agent.domain.DialogPageStart
 import ai.haley.agent.domain.DialogQuestion
+import ai.vital.domain.VITAL_Fact
 import ai.vital.vitalservice.VitalStatus
 import ai.vital.vitalservice.query.ResultList
 import ai.vital.vitalsigns.model.GraphObject
@@ -115,7 +117,6 @@ interface AgentContext {
 	
 	public Set<String> setGraphObjectFact(FactScope scope, GraphObjectFact fact, GraphObject object)
 	
-	
 	//utility method
 	//TODO
 //	public Set<String> setFact(FactScope scope, GraphObject parentObject, PropertyFactInfo factInfo, Object value)	
@@ -141,6 +142,8 @@ interface AgentContext {
 	public BooleanPropertyFact getBooleanFact(FactScope scope, String factName)
 	
 	public IntegerPropertyFact getIntegerFact(FactScope scope, String factName)
+	
+	public JavaRefFact getJavaRefFact(FactScope scope, String factName)
 	
 	public List<IntegerPropertyFact> getIntegerFactsList(FactScope scope, String factName)
 	
@@ -341,5 +344,8 @@ interface AgentContext {
 	 * @return
 	 */
 	FactScope resolveFactScope(String factScope)
-		
+
+	
+	List<String> getAllFactNames(FactScope factScope, String optionalContainsFilter)
+			
 }
