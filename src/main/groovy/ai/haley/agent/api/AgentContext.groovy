@@ -16,6 +16,7 @@ import com.vitalai.aimp.domain.BaseProfile
 import com.vitalai.aimp.domain.BooleanPropertyFact
 import com.vitalai.aimp.domain.Channel
 import com.vitalai.aimp.domain.CurrentBotMessage
+import com.vitalai.aimp.domain.DateTimePropertyFact
 import com.vitalai.aimp.domain.DialogStatusMessage
 import com.vitalai.aimp.domain.DoublePropertyFact
 import com.vitalai.aimp.domain.Endpoint
@@ -155,6 +156,8 @@ interface AgentContext {
 	public DoublePropertyFact getDoubleFact(FactScope scope, String factName)
 	
 	public URIPropertyFact getURIFact(FactScope scope, String factName)
+	
+	public DateTimePropertyFact getDateTimeFact(FactScope scope, String factName)
 	
 	public TruthPropertyFact getTruthFact(FactScope scope, String factName)
 	
