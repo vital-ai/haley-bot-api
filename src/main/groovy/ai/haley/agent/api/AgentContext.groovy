@@ -282,6 +282,15 @@ interface AgentContext {
 	void sendMessageToChannel(String channelName, AIMPMessage input, AIMPMessage output, List<GraphObject> payload)
 	
 	/**
+	 * A method for cross-channel communication.
+	 * @param userID
+	 * @param input
+	 * @param output
+	 * @param payload
+	 */
+	void sendMessageToLoginChannel(String userID, AIMPMessage input, AIMPMessage output, List<GraphObject> payload)
+	
+	/**
 	 * Shortcut for sending text only messages to a channel 
 	 * @param channelName
 	 * @param input
@@ -328,6 +337,7 @@ interface AgentContext {
 	
 	Channel getChannelByURI(String channelURI)
 	
+	Channel getLoginChannelByUserID(String userID)
 	
 	/**
 	 * Passes input message to chat rules engine.
