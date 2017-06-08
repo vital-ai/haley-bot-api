@@ -8,6 +8,7 @@ import ai.vital.domain.VITAL_Fact
 import ai.vital.vitalservice.VitalStatus
 import ai.vital.vitalservice.query.ResultList
 import ai.vital.vitalsigns.model.GraphObject
+import ai.vital.vitalsigns.model.property.URIProperty
 
 import java.util.List;
 
@@ -280,6 +281,15 @@ interface AgentContext {
 	 * @param payload
 	 */
 	void sendMessageToChannel(String channelName, AIMPMessage input, AIMPMessage output, List<GraphObject> payload)
+	
+	/**
+	 * A method for cross channel communication. I can be used to to current channel.	
+	 * @param channelName
+	 * @param input
+	 * @param output
+	 * @param payload
+	 */
+	void sendMessageToChannelURI(URIProperty channelURI, AIMPMessage input, AIMPMessage output, List<GraphObject> payload)
 	
 	/**
 	 * A method for cross-channel communication.
