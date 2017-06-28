@@ -38,6 +38,8 @@ import com.vitalai.aimp.domain.UnsetFactMessage
 
 interface AgentContext {
 
+	String getAccountURI()
+	
 	BaseProfile getProfile()
 
 	Session getSession()

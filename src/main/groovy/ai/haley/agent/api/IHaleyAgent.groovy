@@ -22,6 +22,8 @@ interface IHaleyAgent {
 	
 	public ResultList query(VitalQuery q)
 	
+	public ResultList queryLocal(VitalQuery q)
+	
 	public ResultList save(VitalSegment segment, List<GraphObject> objectsToSave)
 	
 	public VitalSegment getSegment(String segment)
