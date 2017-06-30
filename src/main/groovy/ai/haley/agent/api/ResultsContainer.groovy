@@ -9,6 +9,8 @@ import ai.vital.vitalsigns.model.GraphObject
  */
 class ResultsContainer {
 
+	List<String> bindingNames = []
+	
 	List<Result> results = []
 	
 	Integer offset
@@ -16,6 +18,10 @@ class ResultsContainer {
 	Integer limit
 	
 	Integer totalResults
+	
+	boolean ok = true
+	
+	String errorMessage
 	
 	public void add(Result result) {
 		results.add(result)

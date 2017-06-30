@@ -33,6 +33,8 @@ interface IHaleyAgent {
 	//always use local script interface ?
 	public ResultList callFunction(String functionName, Map<String, Object> params)
 	
+	public ResultList callFunctionOnMaster(String functionName, Map<String, Object> params)
+	
 	public GraphObject getObject(URIProperty objectURI)
 	
 	public ResultList getExpanded(GraphObject g)
