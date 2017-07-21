@@ -258,7 +258,12 @@ interface AgentContext {
 	 * Send data modification event
 	 */
 	void sendDataModificationEvent(Class<? extends GraphObject> graphObjectClass, String objectURI)
-	
+
+	/**
+	 * Send data modification event with type set
+	 */
+	void sendDataModificationEventWithType(Class<? extends GraphObject> graphObjectClass, String objectURI, String eventType)
+		
 	/**
 	 * Sends a processor request message. The input message requestURI is used if provided
 	 * @param processor
@@ -372,5 +377,18 @@ interface AgentContext {
 
 	
 	List<String> getAllFactNames(FactScope factScope, String optionalContainsFilter)
-			
+
+	
+	boolean isChildChannel()
+	
+	ChannelDetails getChannelDetails()
+	
+	List<ChannelDetails> listChildrenChannels()
+	
+	ChannelDetails spawnChildChannel(ChannelDetails newChannelDetails)
+	
+	ChannelDetails killChildChannel(String channelName)
+	
+	void killThisChildChannel()
+	
 }
