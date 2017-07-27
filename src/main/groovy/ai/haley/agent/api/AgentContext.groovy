@@ -391,4 +391,6 @@ interface AgentContext {
 	
 	void killThisChildChannel()
 	
+	boolean isChannelKilled()
+	
 }
