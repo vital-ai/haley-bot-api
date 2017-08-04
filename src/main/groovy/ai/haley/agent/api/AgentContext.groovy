@@ -385,9 +385,13 @@ interface AgentContext {
 	
 	List<ChannelDetails> listChildrenChannels()
 	
+	List<ChannelDetails> listChildrenChannelsForBotURI(String botURI)
+	
 	ChannelDetails spawnChildChannel(ChannelDetails newChannelDetails)
 	
 	ChannelDetails killChildChannel(String channelName)
+	
+	ChannelDetails killChildChannelForBotURI(String botURI, String channelName)
 	
 	void killThisChildChannel()
 	
