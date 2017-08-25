@@ -21,6 +21,8 @@ import com.vitalai.aimp.domain.DateTimePropertyFact
 import com.vitalai.aimp.domain.DialogStatusMessage
 import com.vitalai.aimp.domain.DoublePropertyFact
 import com.vitalai.aimp.domain.Endpoint
+import com.vitalai.aimp.domain.EntityProperty;
+import com.vitalai.aimp.domain.EntitySet;
 import com.vitalai.aimp.domain.GeoLocationPropertyFact;
 import com.vitalai.aimp.domain.GraphObjectFact;
 import com.vitalai.aimp.domain.HaleyTextMessage
@@ -29,6 +31,8 @@ import com.vitalai.aimp.domain.IntegerPropertyFact
 import com.vitalai.aimp.domain.ListFact
 import com.vitalai.aimp.domain.ProcessorRequestMessage
 import com.vitalai.aimp.domain.PropertyFact
+import com.vitalai.aimp.domain.RelationshipProperty;
+import com.vitalai.aimp.domain.RelationshipSet;
 import com.vitalai.aimp.domain.Session
 import com.vitalai.aimp.domain.StringPropertyFact
 import com.vitalai.aimp.domain.ThinkingMessage;
@@ -397,4 +401,23 @@ interface AgentContext {
 	
 	boolean isChannelKilled()
 	
+	/**
+	 * @return full list of all available entity sets (global + current account)
+	 */
+	List<EntitySet> getEntitySets()
+	
+	/**
+	 * @return entity set properties list or throws exception if entity set not found or access forbidden
+	 */
+	List<EntityProperty> getEntitySetProperties(String entitySetURI)
+	
+	/**
+	 * @return full list of all available relationship sets (global + current account)
+	 */
+	List<RelationshipSet> getRelationshipSets() 
+	
+	/**
+	 * @return relationship set properties list or throws exception if relationship set not found or access forbidden
+	 */
+	List<RelationshipProperty> getRelationshipSetProperties(String relationshipSetURI) 		
 }
