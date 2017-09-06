@@ -3,6 +3,7 @@ package ai.haley.agent.builder
 import com.vitalai.aimp.domain.AIMPMessage;
 
 import ai.haley.agent.api.AgentContext
+import ai.haley.agent.api.BotSessionState;
 import ai.haley.agent.api.IHaleyAgent
 import ai.haley.agent.api.InteractionMode;
 import ai.haley.agent.api.MessageHandler
@@ -145,6 +146,15 @@ abstract class BotBuilder {
 	 * @return
 	 */
 	protected abstract Dialog buildDialog(IHaleyAgent agent) 
+	
+	
+	/**
+	 * A hook notified when a new botsessionstate is created and dialog queue populated
+	 * @param botSessionState
+	 */
+	protected void onBotSessionStateCreated(AgentContext context, BotSessionState botSessionState) {
+		//nop
+	}
 	
 	/**
 	 * Initializes bot handlers. Called only once in bot lifecycle.
