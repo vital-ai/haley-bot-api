@@ -420,4 +420,18 @@ interface AgentContext {
 	 * @return relationship set properties list or throws exception if relationship set not found or access forbidden
 	 */
 	List<RelationshipProperty> getRelationshipSetProperties(String relationshipSetURI) 		
+	
+	
+	
+	/**
+	 * registers this channel for "offline" realtime ticks notification ( without active user session )
+	 */
+	void registerForRealtimeticksNotification()
+	
+	/**
+	 * deregisters this channel from "offline" realtime ticks notification ( without active user session )
+	 */
+	void unregisterFromRealtimeticksNotification()
+	
+	
 }

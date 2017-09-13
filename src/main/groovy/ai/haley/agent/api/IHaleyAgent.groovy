@@ -1,5 +1,6 @@
 package ai.haley.agent.api
 
+import java.util.List;
 import java.util.Map;
 
 import ai.vital.vitalservice.VitalService
@@ -9,6 +10,7 @@ import ai.vital.vitalservice.query.VitalQuery
 import ai.vital.vitalsigns.model.GraphObject
 import ai.vital.vitalsigns.model.VitalApp
 import ai.vital.vitalsigns.model.VitalSegment
+import ai.vital.vitalsigns.model.VitalTransaction;
 import ai.vital.vitalsigns.model.property.URIProperty
 
 
@@ -52,5 +54,17 @@ interface IHaleyAgent {
 	 * Returns master service name if runnning in prime agent instance or <code>null</code> if in prime master
 	 */
 	public String getMasterServiceName()
+	
+	
+	
+	public ResultList saveWithTransaction(VitalTransaction tx, VitalSegment segment, List<GraphObject> objectsToSave)
+	
+	public VitalStatus deleteWithTransaction(VitalTransaction tx, List<URIProperty> objectsToDelete)
+	
+	public VitalTransaction createTransaction()
+	
+	public VitalStatus commitTransaction(VitalTransaction tx)
+	
+	public VitalStatus rollbackTransaction(VitalTransaction tx)
 	
 }
