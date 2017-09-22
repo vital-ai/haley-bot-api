@@ -12,6 +12,7 @@ import ai.haley.agent.builder.BotBuilder;
 import ai.vital.domain.VITAL_Fact;
 import ai.vital.vitalsigns.model.GraphObject;
 import ai.vital.vitalsigns.model.VitalApp
+import ai.vital.vitalsigns.model.property.URIProperty
 
 
 class DialogQuestion extends DialogElement {
@@ -86,6 +87,10 @@ class DialogQuestion extends DialogElement {
 		return true
 	}
 	
+	//set when message is to be sent to other channel URIs as well, by default this channel only
+	boolean sendToThisChannel = true
+	List<String> otherChannelURIs = []
+	
 	//keeps the facts URIs that should be removed when reverting this question
 	Set<String> factsURIs = new HashSet<String>()
 	
@@ -143,6 +148,11 @@ class DialogQuestion extends DialogElement {
 		q.state = new HashMap<String, Object>(state)
 		q.textResponseProcessor = textResponseProcessor
 		q.validationType = validationType
+		
+		//runtime
+//		q.sendToThisChannel = sendToThisChannel
+//		q.otherChannelURIs = otherChannelURI
+		
 		return q	
 		
 	}

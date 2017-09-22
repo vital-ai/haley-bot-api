@@ -4,6 +4,7 @@ import ai.haley.agent.api.vitalsigns.JavaRefFact
 import ai.haley.agent.domain.DialogElement
 import ai.haley.agent.domain.DialogPageStart
 import ai.haley.agent.domain.DialogQuestion
+import ai.vital.domain.FileNode
 import ai.vital.domain.VITAL_Fact
 import ai.vital.vitalservice.VitalStatus
 import ai.vital.vitalservice.query.ResultList
@@ -434,4 +435,23 @@ interface AgentContext {
 	void unregisterFromRealtimeticksNotification()
 	
 	
+	/**
+	 * returns file node or null if not found. All public file nodes are available. Throws exception when accessing a file node that does not belong to this account / not shared 
+	 */
+	FileNode getFileNode(String fileNodeURI)
+	
+	/**
+	 * deletes a file node and its contents. Throws exception when accessing a file node that does not belong to this account / not shared
+	 * @param fileNodeURI
+	 * @return true if found and deleted, false otherwise
+	 */
+	boolean deleteFileNode(String fileNodeURI)
+	
+	/**
+	 * Creates a new file node. URI is (re-)generated
+	 * @param fileNode
+	 * @param contents
+	 * @return
+	 */
+	FileNode createFileNodeWithContents(FileNode fileNode, byte[] contents)
 }
