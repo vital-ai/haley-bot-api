@@ -11,6 +11,7 @@ import ai.vital.vitalservice.query.ResultList
 import ai.vital.vitalsigns.model.GraphObject
 import ai.vital.vitalsigns.model.property.URIProperty
 
+import java.io.InputStream;
 import java.util.List;
 
 import com.vitalai.aimp.domain.AIMPMessage
@@ -454,4 +455,17 @@ interface AgentContext {
 	 * @return
 	 */
 	FileNode createFileNodeWithContents(FileNode fileNode, byte[] contents)
+	
+	/**
+	 * Returns file node contents or throws Exception if not found / other error 
+	 * @param fileNode
+	 */
+	byte[] getFileNodeContents(FileNode fileNode)
+
+	/**
+	 * Returns file node contents stream or throws Exception if not found / other error
+	 * @param fileNode
+	 */
+	InputStream getFileNodeContentsStream(FileNode fileNode)
+	
 }
