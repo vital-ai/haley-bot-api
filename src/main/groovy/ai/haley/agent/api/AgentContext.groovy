@@ -5,6 +5,7 @@ import ai.haley.agent.domain.DialogElement
 import ai.haley.agent.domain.DialogPageStart
 import ai.haley.agent.domain.DialogQuestion
 import ai.vital.domain.FileNode
+import ai.vital.domain.Login
 import ai.vital.domain.VITAL_Fact
 import ai.vital.vitalservice.VitalStatus
 import ai.vital.vitalservice.query.ResultList
@@ -45,6 +46,8 @@ import com.vitalai.aimp.domain.UnsetFactMessage
 interface AgentContext {
 
 	String getAccountURI()
+	
+	Login getLogin()
 	
 	BaseProfile getProfile()
 
