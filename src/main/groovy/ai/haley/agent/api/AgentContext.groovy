@@ -460,12 +460,12 @@ interface AgentContext {
 	FileNode createFileNodeWithContents(FileNode fileNode, byte[] contents)
 	
 	/**
-	 * Creates a new file node from contents in S3
+	 * Creates a new file node from blob in binary store
 	 * @param fileNode (scope, name etc)
-	 * @param s3URL source S3 URL - s3://<bucket>/<path>
-	 * @param deleteOnSuccess if source content should be deleted once moved over
+	 * @param blobPath
+	 * @param deleteOnSuccess if source blob should be deleted once file node created
 	 */
-	FileNode createFileNodeFromS3Contents(FileNode fileNode, String s3URL, boolean deleteOnSuccess)
+	FileNode createFileNodeFromBlob(FileNode fileNode, String blobPath, boolean deleteOnSuccess)
 	
 	/**
 	 * Returns file node contents or throws Exception if not found / other error 
