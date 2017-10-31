@@ -466,7 +466,14 @@ interface AgentContext {
 	 * @param deleteOnSuccess if source blob should be deleted once file node created
 	 */
 	FileNode createFileNodeFromBlob(FileNode fileNode, String blobPath, boolean deleteOnSuccess)
-	
+
+	/**
+	 * Creates a new file node with contents from source file node
+	 * @param newFileNode (scope, name, etc)
+	 * @param sourceFileNodeURI
+	 */
+	FileNode createFileNodeFromFileNode(FileNode newFileNode, String sourceFileNodeURI)
+		
 	/**
 	 * Returns file node contents or throws Exception if not found / other error 
 	 * @param fileNode
