@@ -7,8 +7,6 @@ class FactScope {
 	//current profile
 	public final static FactScope profile = new FactScope(FactScopeType.current_profile) 
 	 
-	public final static FactScope session = new FactScope(FactScopeType.session)
-	 
 	public final static FactScope dialog = new FactScope(FactScopeType.dialog)
 	
 	
@@ -33,7 +31,7 @@ class FactScope {
 		
 	}
 	
-	private static FactScope[] _values = [channel, profile, session, dialog] as FactScope[] 
+	private static FactScope[] _values = [channel, profile, dialog] as FactScope[] 
 	
 	public static FactScope[] values() {
 		return _values
@@ -47,8 +45,6 @@ class FactScope {
 			return dialog
 		} else if(factScopeType == FactScopeType.current_profile) {
 			return profile
-		} else if(factScopeType == FactScopeType.session) {
-			return session
 		} else if(factScopeType == FactScopeType.other_profile) {
 			throw new RuntimeException("Cannot init other_profile scope from enum")
 		} else {
@@ -79,7 +75,7 @@ class FactScope {
 	}
 	
 	public String name() {
-		if( scopeType == FactScopeType.dialog || scopeType == FactScopeType.channel || scopeType == FactScopeType.session ) {
+		if( scopeType == FactScopeType.dialog || scopeType == FactScopeType.channel ) {
 			return scopeType.name()
 		} else if(scopeType == FactScopeType.current_profile) {
 			return 'profile'

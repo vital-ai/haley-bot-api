@@ -8,7 +8,5 @@ enum FactScopeType {
 	
 	other_profile, 
 	
-	session,
-	 
 	dialog
 }
