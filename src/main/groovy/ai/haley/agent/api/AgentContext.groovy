@@ -338,6 +338,14 @@ interface AgentContext {
 	boolean closeChannelSession(ChannelSession session)
 	
 	/**
+	 * Closes given session. Returns true if ok, false if session not found
+	 * @param userID
+	 * @param sessionID
+	 * @return
+	 */
+	boolean closeChannelSessionByID(String userID, String sessionID)
+	
+	/**
 	 * Unloads current bot. Returns true if succeeded, false if bot couldn't be unloaded
 	 * @return
 	 */
@@ -485,5 +493,7 @@ interface AgentContext {
 	 * @param fileNode
 	 */
 	InputStream getFileNodeContentsStream(FileNode fileNode)
+
+	
 	
 }
