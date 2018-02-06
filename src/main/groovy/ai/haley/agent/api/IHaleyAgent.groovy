@@ -24,13 +24,21 @@ interface IHaleyAgent {
 	
 	public ResultList query(VitalQuery q)
 	
+	public ResultList queryWithTag(VitalQuery q, String tag)
+	
 	public ResultList queryLocal(VitalQuery q)
 	
+	public ResultList queryLocalWithTag(VitalQuery q, String tag)
+	
 	public ResultList save(VitalSegment segment, List<GraphObject> objectsToSave)
+	
+	public ResultList saveWithTag(VitalSegment segment, List<GraphObject> objectsToSave, String tag)
 	
 	public VitalSegment getSegment(String segment)
 	
 	public VitalStatus delete(List<URIProperty> objectsToDelete)
+	
+	public VitalStatus deleteWithTag(List<URIProperty> objectsToDelete, String tag)
 	
 	//always use local script interface ?
 	public ResultList callFunction(String functionName, Map<String, Object> params)
