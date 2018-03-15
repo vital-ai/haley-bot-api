@@ -7,6 +7,11 @@ import com.vitalai.aimp.domain.Edge_hasChildChannel
 
 class ChannelDetails {
 
+	public final static String FACT_defaultThreadURI = 'defaultThreadURI'
+	public final static String FACT_defaultChannelParent = 'defaultChannelParent'
+	public final static String FACT_defaultBroadcastOnly = 'defaultBroadcastOnly'
+	
+	
 	//set if child
 	Channel parentChannel
 	
@@ -20,6 +25,13 @@ class ChannelDetails {
 	List<Edge_hasChannelBot> channelBotEdges = []
 	
 	List<Bot> bots = []
+	
+	//initialization option
+	//the settings are controlled with channel facts
+	String defaultThreadURI = null
+	Boolean defaultChannelParent = true
+	Boolean defaultBroadcastOnly = true
+	
 	
 	@Override
 	public String toString() {

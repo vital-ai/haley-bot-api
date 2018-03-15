@@ -150,9 +150,20 @@ abstract class BotBuilder {
 	
 	/**
 	 * A hook notified when a new botsessionstate is created and dialog queue populated
+	 * @param context
 	 * @param botSessionState
 	 */
 	protected void onBotSessionStateCreated(AgentContext context, BotSessionState botSessionState) {
+		//nop
+	}
+	
+	/**
+	 * A hook notified when a botsessionstate is destroyed
+	 * @param context
+	 * @param botSessionState
+	 * 
+	 */
+	protected void onBotSessionStateDestroyed(AgentContext context, BotSessionState botSessionState) {
 		//nop
 	}
 	
