@@ -16,7 +16,7 @@ class DialogChatbotRules extends DialogElement {
 	
 	DialogChatbotRules() {
 		
-		revert = { DialogQuestion thisQuestion, AgentContext context ->
+		revert = { DialogChatbotRules thisDialogChatbotRules, AgentContext context ->
 			
 			context.removeFacts(this.factScope, factPropertyName)
 
@@ -41,29 +41,27 @@ class DialogChatbotRules extends DialogElement {
 	}
 	
 	//custom implementation placeholder
-	Closure processMessage = null/*{ DialogQuestion questionData, AgentContext context, List<GraphObject> answerObjects ->
+	Closure processMessage = null/*{ DialogChatbotRules questionData, AgentContext context, List<GraphObject> answerObjects ->
 	
 		return defaultProcessMessageDefaultQuestionAnswerHandler.processMessage(questionData, context, answerObjects)
 		
 	}*/
 	
-	DialogQuestion copy() {
+	DialogChatbotRules copy() {
 		
-		DialogQuestion q = new DialogQuestion()
-		q.available = available
-		q.factClass = factClass
-		q.factPropertyName = factPropertyName
-		q.factScope = factScope
+		DialogChatbotRules r = new DialogChatbotRules()
+		r.available = available
+		r.factClass = factClass
+		r.factPropertyName = factPropertyName
+		r.factScope = factScope
 //		q.factsURIs = factsURIs
-		q.id = id
+		r.id = id
 //		q.helpRequested = helpRequested
-		q.multipleFacts = multipleFacts
-		q.processMessage = processMessage
-		q.revert = revert
-//		q.sent = sent
-//		q.skipped = skipped
-		q.state = new HashMap<String, Object>(state)
-		return q	
+		r.multipleFacts = multipleFacts
+		r.processMessage = processMessage
+		r.revert = revert
+		r.state = state
+		return r
 		
 	}
 

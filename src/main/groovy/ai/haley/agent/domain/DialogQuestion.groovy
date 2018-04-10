@@ -87,7 +87,7 @@ class DialogQuestion extends DialogElement {
 		return true
 	}
 	
-	//set when message is to be sent to other channel URIs as well, by default this channel only
+	//set when message is to be sent to other channel URIs as well, by default default channel only
 	boolean sendToThisChannel = true
 	List<String> otherChannelURIs = []
 	String threadURI = null
