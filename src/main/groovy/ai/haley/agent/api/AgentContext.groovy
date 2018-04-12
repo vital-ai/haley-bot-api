@@ -105,6 +105,9 @@ interface AgentContext {
 	
 	public HaleyTextMessage sendTextMessage(AIMPMessage input, String text)
 	
+	//channel URI is not verified, can be anything
+	public HaleyTextMessage sendTextMessageToChannelURI(AIMPMessage input, String text, String channelURI)
+	
 	public ThinkingMessage sendThinkingMessage(AIMPMessage input)
 	
 	public AIMPMessage sendGenericMessage(AIMPMessage input, AIMPMessage output, GraphObject... payload)	

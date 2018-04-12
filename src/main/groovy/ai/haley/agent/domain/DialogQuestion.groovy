@@ -148,6 +148,7 @@ class DialogQuestion extends DialogElement {
 //		q.skipped = skipped
 		q.state = new HashMap<String, Object>(state)
 		q.textResponseProcessor = textResponseProcessor
+		q.threadURI = threadURI
 		q.validationType = validationType
 		
 		//runtime
