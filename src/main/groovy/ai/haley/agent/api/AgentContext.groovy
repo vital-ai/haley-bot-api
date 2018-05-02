@@ -4,6 +4,7 @@ import ai.haley.agent.api.vitalsigns.JavaRefFact
 import ai.haley.agent.domain.DialogElement
 import ai.haley.agent.domain.DialogPageStart
 import ai.haley.agent.domain.DialogQuestion
+import ai.vital.domain.Account;
 import ai.vital.domain.FileNode
 import ai.vital.domain.Login
 import ai.vital.domain.VITAL_Fact
@@ -46,6 +47,8 @@ import com.vitalai.aimp.domain.UnsetFactMessage
 interface AgentContext {
 
 	String getAccountURI()
+	
+	Account getAccount()
 	
 	Login getLogin()
 	
@@ -498,5 +501,21 @@ interface AgentContext {
 	InputStream getFileNodeContentsStream(FileNode fileNode)
 
 	
+	/**
+	 * Returns list of inter accounts channels
+	 * @param queryTerm (optional)
+	 * @param offset
+	 * @param limit (max 100)
+	 * @return
+	 */
+	List<InterAccountChannel> searchInterMessagingAccounts(String queryTerm, int offset, int limit)
 	
+	/**
+	 * Returns list of inter accounts channels
+	 * @param accountURIs
+	 * @return
+	 */
+	List<InterAccountChannel> getInterMessagingAccounts(Collection<String> accountURIs)
+
+		
 }
