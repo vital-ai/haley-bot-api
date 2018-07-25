@@ -7,9 +7,30 @@ import com.vitalai.aimp.domain.Edge_hasChildChannel
 
 class ChannelDetails {
 
+	/**
+	 * ThreadURI to be set for all sent aimp messages.
+	 * Default: empty
+	 */
 	public final static String FACT_defaultThreadURI = 'defaultThreadURI'
+	
+	/**
+	 * When set child channel sends messages to parent channel URI (URI)
+	 * Default: true
+	 */
 	public final static String FACT_defaultChannelParent = 'defaultChannelParent'
+	
+	/**
+	 * When set child channel send messages to output queue only (broadcast)  
+	 * Default: true
+	 */
 	public final static String FACT_defaultBroadcastOnly = 'defaultBroadcastOnly'
+	
+	/**
+	 * Send messages to parent internally only for processing (if child channel).
+	 * When enabled it overrides FACT_defaultChannelParent and FACT_defaultBroadcastOnly  
+	 * Default: false
+	 */
+	public final static String FACT_directToParent = 'directToParent'
 	
 	
 	//set if child
@@ -31,7 +52,7 @@ class ChannelDetails {
 	String defaultThreadURI = null
 	Boolean defaultChannelParent = true
 	Boolean defaultBroadcastOnly = true
-	
+	Boolean directToParent = false
 	
 	@Override
 	public String toString() {
@@ -48,7 +69,8 @@ class ChannelDetails {
 		
 		String s = "ChannelDetails - name: ${channel.name} URI: ${channel.URI} ${parentChannel != null ? '[CHILD]' : '[PARENT]'}" +
 			(parentChannel ? ( "parent channel name: " + parentChannel.name + " URI: " + parentChannel.URI ) : "") + " " +
-			"bots: ${botsString}";
+			"bots: ${botsString} defaultThreadURI: ${defaultThreadURI} defaultChannelParent: ${defaultChannelParent} " + 
+			"defaultBroadcastOnly: ${defaultBroadcastOnly} directToParent: ${directToParent}";
 		
 		return s
 			

@@ -90,6 +90,7 @@ class DialogQuestion extends DialogElement {
 	//set when message is to be sent to other channel URIs as well, by default default channel only
 	boolean sendToThisChannel = true
 	List<String> otherChannelURIs = []
+	boolean sendToInput = false
 	String threadURI = null
 	
 	//keeps the facts URIs that should be removed when reverting this question
