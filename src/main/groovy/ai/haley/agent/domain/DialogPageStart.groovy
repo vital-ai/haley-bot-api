@@ -33,6 +33,8 @@ class DialogPageStart extends DialogElement {
 	
 	String title
 	
+	boolean staticQuestionsList = false
+	
 	//by default all dialog end elements are available
 	Closure available = { DialogPageStart thisElement, AgentContext context ->
 		return true
@@ -53,6 +55,7 @@ class DialogPageStart extends DialogElement {
 		d.page = page
 		d.revert = revert
 		d.state = new HashMap<String, Object>(state)
+		d.staticQuestionsList = staticQuestionsList
 		d.title = title
 		d.total = total
 		d.validate = validate
