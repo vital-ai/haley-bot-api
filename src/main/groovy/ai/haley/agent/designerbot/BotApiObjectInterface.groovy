@@ -19,7 +19,7 @@ import ai.haley.agent.api.InterAccountChannel
 //import ai.haley.agent.impl.AgentContextImpl
 //import ai.haley.agent.impl.LoginsProfilesAccess
 //import ai.haley.agent.utils.QueryUtils
-//import ai.haley.workflow.api.WorkflowAPI
+import ai.haley.workflow.api.WorkflowAPI
 //import ai.haley.workflow.api.WorkflowAPIFactory
 
 import ai.vital.domain.Account
@@ -139,21 +139,17 @@ interface BotApiObjectInterface {
 	List<EntityProperty> getEntitySetProperties(String entitySetURI)
 		
 	
-	//TODO these should be public?
-	
 	/**
 	 * Wraps an entity with name->propertyURI layer
 	 */
-	//EntityWrapper wrapEntity(Entity entity) 
+	EntityWrapper wrapEntity(Entity entity) 
 	
 	/**
 	 * Create new entity with name->propertyURI layer
 	 */
-	//EntityWrapper createNewWrappedEntity(String entitySetName) 
+	EntityWrapper createNewWrappedEntity(String entitySetName) 
 	
 	
-	
-
 	/**
 	 * Lists current account logins
 	 * @param loginTypeFilter required, determines profiles path
@@ -258,8 +254,7 @@ interface BotApiObjectInterface {
 
 	public void unregisterFromRealtimeticksNotification() 
 
-	// move create Workflow API interface that is public also?
-	//public WorkflowAPI getWorkflowAPI()
+	public WorkflowAPI getWorkflowAPI()
 	
 	public FileNode getFileNode(String fileNodeURI)
 
@@ -286,6 +281,6 @@ interface BotApiObjectInterface {
 	public List<InterAccountChannel> searchInterMessagingAccounts(String queryTerm, int offset, int limit)
 	
 	public List<InterAccountChannel> getInterMessagingAccounts(Collection<String> accountURIs)
-	
+
 }
 
