@@ -17,6 +17,8 @@ import java.io.InputStream;
 import java.util.List;
 
 import com.vitalai.aimp.domain.AIMPMessage
+import com.vitalai.aimp.domain.AccountAction
+import com.vitalai.aimp.domain.AccountInteractionPart
 import com.vitalai.aimp.domain.BaseProfile
 import com.vitalai.aimp.domain.BooleanPropertyFact
 import com.vitalai.aimp.domain.Channel
@@ -518,4 +520,23 @@ interface AgentContext {
 	List<InterAccountChannel> getInterMessagingAccounts(Collection<String> accountURIs)
 
 		
+	/**
+	 * Sends an interaction to another account, sharing all objects in the payload
+	 * @param recipientAccountURI
+	 * @param accountAction
+	 * @param payload
+	 * @return result list with status. On success result list contains new AccountInteractionPart
+	 */
+	ResultList sendAccountInteraction(String recipientAccountURI, AccountAction accountAction, Collection<GraphObject> payload)
+	
+	/**
+	 * Forwards existing interaction to another account, sharing account action and all objects in the payload.
+	 * Account action is retrieved 
+	 * @param recipientAccountURI
+	 * @param accountInteractionPart
+	 * @param payload
+	 * @return result list with status. On success result list contains new AccountInteractionPart
+	 */
+	ResultList forwardAccountInteraction(String recipientAccountURI, AccountInteractionPart accountInteractionPart, Collection<GraphObject> payload)
 }
+
