@@ -2,6 +2,7 @@ package ai.haley.agent.designerbot
 
 import java.security.AccessController
 import java.security.PrivilegedAction
+import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -33,6 +34,8 @@ import ai.vital.vitalsigns.model.GraphObject
 import ai.vital.vitalsigns.model.property.URIProperty
 
 import com.vitalai.aimp.domain.AIMPMessage
+import com.vitalai.aimp.domain.AccountAction;
+import com.vitalai.aimp.domain.AccountInteractionPart;
 import com.vitalai.aimp.domain.BaseProfile
 import com.vitalai.aimp.domain.Channel
 import com.vitalai.aimp.domain.Edge_hasRelationship;
@@ -282,5 +285,24 @@ interface BotApiObjectInterface {
 	
 	public List<InterAccountChannel> getInterMessagingAccounts(Collection<String> accountURIs)
 
+	
+	/**
+	 * Sends an interaction to another account, sharing all objects in the payload
+	 * @param recipientAccountURI
+	 * @param accountAction
+	 * @param payload
+	 * @return result list with status. On success result list contains new AccountInteractionPart
+	 */
+	public ResultList sendAccountInteraction(String recipientAccountURI, AccountAction accountAction, Collection<GraphObject> payload)
+	
+	/**
+	 * Forwards existing interaction to another account, sharing account action and all objects in the payload.
+	 * Account action is retrieved
+	 * @param recipientAccountURI
+	 * @param accountInteractionPart
+	 * @param payload
+	 * @return result list with status. On success result list contains new AccountInteractionPart
+	 */
+	public ResultList forwardAccountInteraction(String recipientAccountURI, AccountInteractionPart accountInteractionPart, Collection<GraphObject> payload)
 }
 
