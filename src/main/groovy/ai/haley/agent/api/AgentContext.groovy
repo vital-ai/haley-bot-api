@@ -428,6 +428,19 @@ interface AgentContext {
 	List<EntitySet> getEntitySets()
 	
 	/**
+	 * @param entitySetName
+	 * @return returns entity set with given name or <code>null</code> if not found 
+	 */
+	EntitySet getEntitySetByName(String entitySetName)
+	
+	/**
+	 * @param entitySetURIs
+	 * @return returns entity sets map containing all found entitysets keyed by entityset URI
+	 */
+	Map<String, EntitySet> getEntitySetsByURIs(Collection<String> entitySetURIs)
+	
+	
+	/**
 	 * @return entity set properties list or throws exception if entity set not found or access forbidden
 	 */
 	List<EntityProperty> getEntitySetProperties(String entitySetURI)

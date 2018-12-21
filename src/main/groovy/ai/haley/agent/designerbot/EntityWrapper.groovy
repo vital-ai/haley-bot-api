@@ -22,20 +22,12 @@ class EntityWrapper extends GroovyObjectSupport {
 	
 	public static EntityWrapper createNewWrappedEntity(AgentContext context, String entitySetName) {
 		
-		EntitySet x = null
-		
-		for(EntitySet es : context.getEntitySets() ) {
-			if(es.name?.toString() == entitySetName) {
-				x = es
-				break
-			}
-		}
-	
-		if(x == null) throw new Exception("Entity Set not found: " + entitySetName)
+		EntitySet es = context.getEntitySetByName(entitySetName)
+		if(es == null) throw new Exception("Entity Set not found: " + entitySetName)
 		
 		Entity entity = new Entity()
 		entity.generateURI(context.agentInstance.app)
-		entity.entitySetURI = [x.URI]
+		entity.entitySetURI = [es.URI]
 		
 		return createWrapped(context, entity)
 		
@@ -48,30 +40,15 @@ class EntityWrapper extends GroovyObjectSupport {
 		if(uris == null || uris.size() == 0) throw new RuntimeException("Entity does not have entitySetURIs assigned")
 		
 		
-		List<EntitySet> sets = context.getEntitySets()
-		
-		List<EntitySet> filtered = []
+		Map<String, EntitySet> esMap = context.getEntitySetsByURIs(uris)
 		
 		for(String esURI : uris) {
-			
-			EntitySet es = null
-			for(EntitySet x : sets ) {
-				if(x.URI == esURI) {
-					es = x
-					break
-				}
-			}
-			
-			if(es == null) {
-				throw new RuntimeException("Entity set not found: ${esURI}")
-			}
-			
-			filtered.add(es)
+			if(!esMap.containsKey(esURI)) throw new RuntimeException("Entity set not found: ${esURI}")
 		}
-
+		
 		Map<String, EntityProperty> propsMap = [:]
 		
-		for(EntitySet es : filtered) {
+		for(EntitySet es : esMap.values()) {
 			
 			List<EntityProperty> props = context.getEntitySetProperties(es.URI)
 			
@@ -82,7 +59,7 @@ class EntityWrapper extends GroovyObjectSupport {
 			 
 		}
 		
-		return new EntityWrapper(filtered, entity, propsMap)
+		return new EntityWrapper(new ArrayList<EntitySet>(esMap.values()), entity, propsMap)
 	}
 	
 	@Override
