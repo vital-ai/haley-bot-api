@@ -28,7 +28,8 @@ import com.vitalai.aimp.domain.DialogStatusMessage
 import com.vitalai.aimp.domain.DoublePropertyFact
 import com.vitalai.aimp.domain.Endpoint
 import com.vitalai.aimp.domain.EntityProperty;
-import com.vitalai.aimp.domain.EntitySet;
+import com.vitalai.aimp.domain.EntitySet
+import com.vitalai.aimp.domain.ExternalInteractionPart;
 import com.vitalai.aimp.domain.GeoLocationPropertyFact;
 import com.vitalai.aimp.domain.GraphObjectFact;
 import com.vitalai.aimp.domain.HaleyTextMessage
@@ -535,6 +536,7 @@ interface AgentContext {
 		
 	/**
 	 * Sends an interaction to another account, sharing all objects in the payload
+	 * Payload objects are created if not exist; otherwise the access is checked. Payload objects are shared with recipient.
 	 * @param recipientAccountURI
 	 * @param accountAction
 	 * @param payload
@@ -544,12 +546,34 @@ interface AgentContext {
 	
 	/**
 	 * Forwards existing interaction to another account, sharing account action and all objects in the payload.
-	 * Account action is retrieved 
+	 * Account action is retrieved
+	 * Payload objects are created if not exist; otherwise the access is checked. Payload objects are shared with recipient. 
 	 * @param recipientAccountURI
 	 * @param accountInteractionPart
 	 * @param payload
 	 * @return result list with status. On success result list contains new AccountInteractionPart
 	 */
 	ResultList forwardAccountInteraction(String recipientAccountURI, AccountInteractionPart accountInteractionPart, Collection<GraphObject> payload)
+	
+	/**
+	 * Sends an interaction to external recipient (node)
+	 * Payload objects are created if not exist; otherwise the access is checked. 
+	 * @param recipientReferenceURI
+	 * @param accountAction
+	 * @param payload
+	 * @return result list with status. On success result list contains new ExternalInteractionPart
+	 */
+	ResultList sendExternalInteraction(String recipientReferenceURI, AccountAction accountAction, Collection<GraphObject> payload)
+	
+	/**
+	 * Forwards existing external interaction to another recipient (node)
+	 * Account action is retrieved
+	 * Payload objects are created if not exist; otherwise the access is checked
+	 * @param recipientReferenceURI
+	 * @param externalInteractionPart
+	 * @param payload
+	 * @return result list with status. On success result list contains new ExternalInteractionPart
+	 */
+	ResultList forwardExternalInteraction(String recipientReferenceURI, ExternalInteractionPart externalInteractionPart, Collection<GraphObject> payload)
 }
 
