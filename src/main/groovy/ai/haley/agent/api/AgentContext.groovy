@@ -18,7 +18,9 @@ import java.util.List;
 
 import com.vitalai.aimp.domain.AIMPMessage
 import com.vitalai.aimp.domain.AccountAction
+import com.vitalai.aimp.domain.AccountInteraction;
 import com.vitalai.aimp.domain.AccountInteractionPart
+import com.vitalai.aimp.domain.BaseInteractionPart;
 import com.vitalai.aimp.domain.BaseProfile
 import com.vitalai.aimp.domain.BooleanPropertyFact
 import com.vitalai.aimp.domain.Channel
@@ -29,6 +31,7 @@ import com.vitalai.aimp.domain.DoublePropertyFact
 import com.vitalai.aimp.domain.Endpoint
 import com.vitalai.aimp.domain.EntityProperty;
 import com.vitalai.aimp.domain.EntitySet
+import com.vitalai.aimp.domain.ExternalInteraction;
 import com.vitalai.aimp.domain.ExternalInteractionPart;
 import com.vitalai.aimp.domain.GeoLocationPropertyFact;
 import com.vitalai.aimp.domain.GraphObjectFact;
@@ -575,5 +578,13 @@ interface AgentContext {
 	 * @return result list with status. On success result list contains new ExternalInteractionPart
 	 */
 	ResultList forwardExternalInteraction(String recipientReferenceURI, ExternalInteractionPart externalInteractionPart, Collection<GraphObject> payload)
+	
+	/**
+	 * Bridges two interaction parts that user has access to. Returns a new hyper edge on success. There can be only a single bridge hyperedge for given account 
+	 * @param sourceInteractionPart
+	 * @param destinationInteractionPart
+	 * @return result list with status. On success result list will contain new/existing com.vitalai.aimp.domain.HyperEdge_hasBridgeInteractionPartChain
+	 */
+	ResultList bridgeInteractionParts(BaseInteractionPart sourceInteractionPart, BaseInteractionPart destinationInteractionPart)
 }
 
