@@ -586,5 +586,12 @@ interface AgentContext {
 	 * @return result list with status. On success result list will contain new/existing com.vitalai.aimp.domain.HyperEdge_hasBridgeInteractionPartChain
 	 */
 	ResultList bridgeInteractionParts(BaseInteractionPart sourceInteractionPart, BaseInteractionPart destinationInteractionPart)
+	
+	
+	/**
+	 * Enqueues message in local queue of the consumer to be reprocessed in next round
+	 * @param message
+	 */
+	void enqueueMessageInCurrentConsumerThread(List<GraphObject> message)
 }
 
